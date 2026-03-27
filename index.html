@@ -784,10 +784,248 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Status ticker */
+        .status-ticker-section {
+            padding: 2.5rem 0 1rem;
+        }
+
+        .ticker-label {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .ticker-label h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-dim);
+        }
+
+        .ticker-track {
+            position: relative;
+            overflow: hidden;
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            padding: 0.6rem 0;
+        }
+
+        .ticker-belt {
+            display: flex;
+            gap: 0.75rem;
+            width: max-content;
+            animation: scroll-left 45s linear infinite;
+        }
+
+        .ticker-belt:hover { animation-play-state: paused; }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.9rem;
+            background: var(--surface-2);
+            border: 1px solid var(--stroke);
+            border-radius: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.25s;
+        }
+
+        .ticker-item:hover {
+            border-color: var(--stroke-hover);
+        }
+
+        .ticker-item .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .ticker-item .status-dot.online {
+            background: #34d399;
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
+        }
+
+        .ticker-item .status-dot.updating {
+            background: #fbbf24;
+            box-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        .ticker-game {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-bright);
+        }
+
+        .ticker-status {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.6rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ticker-status.online { color: #34d399; }
+        .ticker-status.updating { color: #fbbf24; }
+
+        .ticker-ver {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.55rem;
+            color: var(--text-dim);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 2rem 0 3rem;
+        }
+
+        .testimonials-label {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .testimonials-label h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonials-label .bar {
+            width: 36px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--accent-deep));
+            margin: 0 auto;
+            border-radius: 3px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--surface-2);
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            padding: 1.4rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: -4px;
+            right: 12px;
+            font-size: 4rem;
+            font-family: 'Space Grotesk', serif;
+            color: var(--accent);
+            opacity: 0.06;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--stroke-hover);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-top {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .testimonial-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-deep), var(--cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .testimonial-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            line-height: 1.2;
+        }
+
+        .testimonial-game {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.58rem;
+            color: var(--accent);
+            letter-spacing: 0.3px;
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 0.6rem;
+        }
+
+        .testimonial-stars svg {
+            width: 12px;
+            height: 12px;
+            fill: #fbbf24;
+        }
+
+        .testimonial-text {
+            font-size: 0.8rem;
+            color: var(--text-normal);
+            line-height: 1.65;
+        }
+
         @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
             .article-block { padding: 1.5rem 1rem; }
             .article-block h2 { font-size: 1.05rem; }
             .article-block h3 { font-size: 0.92rem; }
+        }
+
+        @media (min-width: 769px) and (max-width: 900px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
     <script type="application/ld+json">
@@ -1005,6 +1243,218 @@
                         </div>
                     </div>
                 </a>
+            </div>
+        </section>
+
+        <!-- Status Ticker -->
+        <section class="status-ticker-section">
+            <div class="ticker-label">
+                <h2>Live Script Status</h2>
+            </div>
+            <div class="ticker-track">
+                <div class="ticker-belt" id="tickerBelt">
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Blox Fruits</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v4.8.2</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Rivals</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v3.1.0</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Fisch</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v2.5.1</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot updating"></span>
+                        <span class="ticker-game">Grow a Garden</span>
+                        <span class="ticker-status updating">Updating</span>
+                        <span class="ticker-ver">v1.9.7</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Brookhaven</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v5.0.3</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Dead Rails</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v2.2.0</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Anime Vanguards</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v1.4.6</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Forsaken</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v3.0.1</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Volleyball</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v1.7.3</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Fish It</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v2.1.0</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Forest</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v1.3.8</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot updating"></span>
+                        <span class="ticker-game">Brainrot Tower Defense</span>
+                        <span class="ticker-status updating">Updating</span>
+                        <span class="ticker-ver">v2.6.4</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Delta Executor</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v8.3.1</span>
+                    </div>
+                    <div class="ticker-item">
+                        <span class="status-dot online"></span>
+                        <span class="ticker-game">Island</span>
+                        <span class="ticker-status online">Online</span>
+                        <span class="ticker-ver">v1.5.2</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <div class="testimonials-label">
+                <h2>What Players Say</h2>
+                <div class="bar"></div>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="testimonial-avatar">JK</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">Jake_K1ng</span>
+                            <span class="testimonial-game">Blox Fruits</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                    </div>
+                    <p class="testimonial-text">Hit max level in 2 days with the auto farm. This literally saved me weeks of grinding. Overflow hub is insane.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="testimonial-avatar">MR</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">MikeRivalsYT</span>
+                            <span class="testimonial-game">Rivals</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                    </div>
+                    <p class="testimonial-text">The ESP and silent aim are smooth as hell. Went from Gold to Diamond rank in one session. Actually undetected too.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="testimonial-avatar">LF</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">Luna_Fisch</span>
+                            <span class="testimonial-game">Fisch</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                    </div>
+                    <p class="testimonial-text">Auto fish is a game changer. Left it running overnight and woke up to a full collection. Best scripts out there fr.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="testimonial-avatar">DX</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">DarkXpl0it</span>
+                            <span class="testimonial-game">Delta Executor</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                    </div>
+                    <p class="testimonial-text">Only executor that works on my phone. Key system takes 2 min. Runs every script I've tried with zero crashes.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="testimonial-avatar">GG</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">GardenGrind3r</span>
+                            <span class="testimonial-game">Grow a Garden</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                    </div>
+                    <p class="testimonial-text">Auto plant and auto sell made me rich in the game within a day. My friends thought I was no-lifing it lmao.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="testimonial-avatar">ZR</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">Zr_MobilePro</span>
+                            <span class="testimonial-game">Dead Rails</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 6.17H19l-5.3 4.08L15.8 18 10 13.83 4.2 18l2.1-6.75L1 7.17h6.61z"/></svg>
+                    </div>
+                    <p class="testimonial-text">God mode + kill aura is broken in the best way. Survived 50 waves without even trying. Works perfectly on mobile too.</p>
+                </div>
             </div>
         </section>
 
@@ -1262,6 +1712,13 @@
                 card.style.transition = 'all 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
             });
         });
+
+        (function() {
+            const belt = document.getElementById('tickerBelt');
+            if (!belt) return;
+            const items = belt.innerHTML;
+            belt.innerHTML = items + items;
+        })();
     </script>
   
     <script>

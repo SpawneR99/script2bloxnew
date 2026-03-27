@@ -348,7 +348,7 @@
 
         .area-label {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .area-label h2 {
@@ -370,170 +370,234 @@
         }
 
         .card-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            max-width: 740px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            max-width: 680px;
             margin: 0 auto;
         }
 
         .action-card {
             position: relative;
-            background: var(--surface-2);
-            backdrop-filter: blur(16px);
+            background: var(--surface-1);
             border: 1px solid var(--stroke);
-            border-radius: var(--r);
-            padding: 2.2rem 1.8rem;
+            border-radius: 18px;
+            padding: 0;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
             cursor: pointer;
             text-decoration: none;
             color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            min-height: 190px;
         }
 
         .action-card::before {
             content: '';
             position: absolute;
-            inset: 0;
-            border-radius: var(--r);
-            padding: 1px;
-            background: linear-gradient(160deg, var(--card-tint), transparent 50%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--card-tint), transparent);
             opacity: 0;
             transition: opacity 0.4s;
         }
 
+        .action-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--card-glow), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
         .action-card:hover {
-            transform: translateY(-6px) scale(1.01);
+            transform: translateY(-4px);
             border-color: var(--stroke-hover);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px var(--card-glow);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--stroke-hover);
         }
 
         .action-card:hover::before { opacity: 1; }
+        .action-card:hover::after { opacity: 1; }
 
         .action-card.variant-a {
             --card-tint: var(--accent);
-            --card-glow: rgba(124, 58, 237, 0.1);
+            --card-glow: rgba(124, 58, 237, 0.07);
         }
 
         .action-card.variant-b {
             --card-tint: var(--cyan);
-            --card-glow: rgba(34, 211, 238, 0.08);
+            --card-glow: rgba(34, 211, 238, 0.06);
         }
 
-        .card-flag {
+        .card-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-visual-bg {
             position: absolute;
-            top: 1.2rem;
-            right: 1.2rem;
-            padding: 0.2rem 0.55rem;
-            background: var(--surface-3);
-            color: var(--card-tint);
-            font-family: 'Fira Code', monospace;
-            font-size: 0.58rem;
-            font-weight: 600;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            border: 1px solid var(--stroke);
+            inset: 0;
+            background: linear-gradient(145deg, var(--card-glow), transparent 70%);
+            opacity: 0.8;
+        }
+
+        .card-visual-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            background-image: radial-gradient(circle, var(--card-tint) 1px, transparent 1px);
+            background-size: 16px 16px;
         }
 
         .card-thumb-wrap {
             position: relative;
-            width: 56px;
-            height: 56px;
-            margin-bottom: 1.4rem;
+            width: 68px;
+            height: 68px;
+            z-index: 1;
         }
 
         .card-thumb-bg {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--card-tint), transparent);
-            border-radius: 16px;
-            opacity: 0.1;
-            transition: opacity 0.3s;
+            inset: -8px;
+            background: radial-gradient(circle, var(--card-tint), transparent 70%);
+            border-radius: 50%;
+            opacity: 0.2;
+            transition: opacity 0.4s, transform 0.4s;
         }
 
-        .action-card:hover .card-thumb-bg { opacity: 0.2; }
+        .action-card:hover .card-thumb-bg {
+            opacity: 0.35;
+            transform: scale(1.3);
+        }
 
         .card-thumb {
             position: relative;
             width: 100%;
             height: 100%;
             object-fit: contain;
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .action-card:hover .card-thumb { transform: scale(1.08) rotate(2deg); }
+        .action-card:hover .card-thumb {
+            transform: scale(1.12) rotate(-3deg);
+        }
+
+        .card-body {
+            padding: 1.5rem 1.6rem 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
+        }
 
         .card-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-bright);
-            margin-bottom: 0.45rem;
             letter-spacing: -0.2px;
+        }
+
+        .card-flag {
+            padding: 0.15rem 0.5rem;
+            background: linear-gradient(135deg, var(--card-tint), color-mix(in srgb, var(--card-tint), white 30%));
+            color: #0a0e27;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.52rem;
+            font-weight: 700;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .card-desc {
             color: var(--text-normal);
-            font-size: 0.84rem;
-            line-height: 1.65;
-            margin-bottom: 1.2rem;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            margin-bottom: 0.9rem;
+        }
+
+        .card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
         }
 
         .card-chips {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.3rem;
-            margin-bottom: 1.5rem;
+            gap: 0.35rem;
         }
 
         .chip {
-            padding: 0.18rem 0.55rem;
-            background: rgba(255, 255, 255, 0.03);
+            padding: 0.2rem 0.55rem;
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--stroke);
-            border-radius: 6px;
+            border-radius: 100px;
             font-family: 'Fira Code', monospace;
-            font-size: 0.6rem;
+            font-size: 0.56rem;
             color: var(--text-dim);
             letter-spacing: 0.3px;
+            transition: border-color 0.25s, color 0.25s;
+        }
+
+        .action-card:hover .chip {
+            border-color: var(--stroke-hover);
+            color: var(--text-normal);
         }
 
         .card-action {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.55rem 1.3rem;
-            background: linear-gradient(135deg, var(--card-tint), color-mix(in srgb, var(--card-tint), white 20%));
-            color: #0a0e27;
+            gap: 0.4rem;
+            padding: 0.5rem 1.1rem;
+            background: transparent;
+            color: var(--card-tint);
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.76rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.4px;
             border-radius: 10px;
+            border: 1px solid var(--card-tint);
             text-decoration: none;
-            margin-top: auto;
-            transition: all 0.25s;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .card-action:hover {
-            box-shadow: 0 8px 24px var(--card-glow);
-            transform: translateY(-1px);
+        .action-card:hover .card-action {
+            background: var(--card-tint);
+            color: #0a0e27;
+            box-shadow: 0 6px 20px var(--card-glow);
         }
 
         .card-action svg {
-            width: 14px;
-            height: 14px;
-            transition: transform 0.25s;
+            width: 13px;
+            height: 13px;
+            transition: transform 0.3s;
         }
 
-        .card-action:hover svg { transform: translateX(3px); }
+        .action-card:hover .card-action svg {
+            transform: translateX(3px);
+        }
 
         /* Article / SEO */
         .article-block {
@@ -687,11 +751,19 @@
             .metrics { gap: 1.5rem; }
 
             .card-row {
-                grid-template-columns: 1fr;
-                max-width: 400px;
+                max-width: 100%;
             }
 
-            .action-card { padding: 1.5rem 1.25rem; }
+            .action-card {
+                grid-template-columns: 100px 1fr;
+                min-height: 160px;
+            }
+
+            .card-body { padding: 1.2rem 1.2rem 1.2rem 0; }
+
+            .card-bottom { flex-direction: column; align-items: flex-start; }
+
+            .card-thumb-wrap { width: 52px; height: 52px; }
 
             .showcase::after { width: 260px; height: 260px; }
         }
@@ -704,8 +776,8 @@
 
         /* Entrance animations */
         .showcase { animation: rise 0.7s ease-out; }
-        .action-card:nth-child(1) { animation: rise 0.5s ease-out 0.2s both; }
-        .action-card:nth-child(2) { animation: rise 0.5s ease-out 0.35s both; }
+        .action-card:nth-child(1) { animation: rise 0.5s ease-out 0.15s both; }
+        .action-card:nth-child(2) { animation: rise 0.5s ease-out 0.3s both; }
 
         @keyframes rise {
             from { opacity: 0; transform: translateY(24px); }
@@ -867,51 +939,71 @@
             <div class="card-row">
                 <!-- Executor -->
                 <a href="script/index.html" class="action-card variant-a">
-                    <span class="card-flag">Popular</span>
-                    <div class="card-thumb-wrap">
-                        <div class="card-thumb-bg"></div>
-                        <img src="delta.png" alt="Delta Executor" class="card-thumb">
+                    <div class="card-visual">
+                        <div class="card-visual-bg"></div>
+                        <div class="card-visual-pattern"></div>
+                        <div class="card-thumb-wrap">
+                            <div class="card-thumb-bg"></div>
+                            <img src="delta.png" alt="Delta Executor" class="card-thumb">
+                        </div>
                     </div>
-                    <h3 class="card-name">Delta Executor</h3>
-                    <p class="card-desc">
-                        Run scripts with the most powerful Roblox executor. Instant key generation, auto-updates, mobile & PC.
-                    </p>
-                    <div class="card-chips">
-                        <span class="chip">Auto-Update</span>
-                        <span class="chip">Anti-Ban</span>
-                        <span class="chip">Mobile</span>
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h3 class="card-name">Delta Executor</h3>
+                            <span class="card-flag">Popular</span>
+                        </div>
+                        <p class="card-desc">
+                            Run scripts with the most powerful Roblox executor. Instant key generation, auto-updates, mobile & PC.
+                        </p>
+                        <div class="card-bottom">
+                            <div class="card-chips">
+                                <span class="chip">Auto-Update</span>
+                                <span class="chip">Anti-Ban</span>
+                                <span class="chip">Mobile</span>
+                            </div>
+                            <span class="card-action">
+                                Get Executor
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
-                    <span class="card-action">
-                        Get Executor
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
                 </a>
 
                 <!-- Scripts -->
                 <a href="scripts/index.html" class="action-card variant-b">
-                    <span class="card-flag">50+ Games</span>
-                    <div class="card-thumb-wrap">
-                        <div class="card-thumb-bg"></div>
-                        <img src="script.png" alt="Scripts" class="card-thumb">
+                    <div class="card-visual">
+                        <div class="card-visual-bg"></div>
+                        <div class="card-visual-pattern"></div>
+                        <div class="card-thumb-wrap">
+                            <div class="card-thumb-bg"></div>
+                            <img src="script.png" alt="Scripts" class="card-thumb">
+                        </div>
                     </div>
-                    <h3 class="card-name">Script Library</h3>
-                    <p class="card-desc">
-                        Premium scripts for all popular Roblox games. Verified, safe, and updated daily.
-                    </p>
-                    <div class="card-chips">
-                        <span class="chip">Blox Fruits</span>
-                        <span class="chip">Rivals</span>
-                        <span class="chip">Fisch</span>
-                        <span class="chip">+50 more</span>
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h3 class="card-name">Script Library</h3>
+                            <span class="card-flag">50+ Games</span>
+                        </div>
+                        <p class="card-desc">
+                            Premium scripts for all popular Roblox games. Verified, safe, and updated daily.
+                        </p>
+                        <div class="card-bottom">
+                            <div class="card-chips">
+                                <span class="chip">Blox Fruits</span>
+                                <span class="chip">Rivals</span>
+                                <span class="chip">Fisch</span>
+                                <span class="chip">+50 more</span>
+                            </div>
+                            <span class="card-action">
+                                Browse Scripts
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
-                    <span class="card-action">
-                        Browse Scripts
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
                 </a>
             </div>
         </section>

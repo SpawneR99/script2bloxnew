@@ -9,1113 +9,518 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://RoCrack.com/scripts/">
     <link rel="icon" type="image/png" href="/logo.png">
+    <meta name="theme-color" content="#7c3aed">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #a78bfa;
-            --primary-glow: rgba(167, 139, 250, 0.5);
-            --primary-dark: #7c3aed;
-            --secondary: #22d3ee;
-            --secondary-glow: rgba(34, 211, 238, 0.3);
-            --accent: #22d3ee;
-            --accent-glow: rgba(34, 211, 238, 0.3);
-            --bg-dark: #0c0c1d;
-            --bg-darker: #06060f;
-            --bg-card: rgba(18, 18, 42, 0.8);
-            --bg-card-hover: rgba(26, 26, 58, 0.9);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b5;
-            --text-muted: #5a5a70;
-            --border-color: rgba(34, 211, 238, 0.2);
-            --success: #22d3ee;
-            --warning: #fb923c;
-            --danger: #ef4444;
-            --danger-bg: rgba(239, 68, 68, 0.08);
-            --danger-border: rgba(239, 68, 68, 0.3);
+            --accent:#a78bfa;--accent-bright:#c4b5fd;--accent-deep:#7c3aed;
+            --accent-glow:rgba(167,139,250,0.35);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.12);
+            --surface-0:#06060f;--surface-1:#0c0c1d;
+            --surface-2:rgba(18,18,42,0.75);--surface-3:rgba(26,26,58,0.6);
+            --glass:rgba(14,14,36,0.55);--glass-border:rgba(167,139,250,0.12);
+            --glass-hover:rgba(167,139,250,0.28);
+            --text-bright:#eef2ff;--text-normal:#a5b4d4;--text-dim:#5b6a8a;
+            --stroke:rgba(167,139,250,0.1);--success:#34d399;--warning:#fbbf24;--r:20px;
         }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:hidden}
+        body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--surface-0);color:var(--text-normal);min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
 
-        .privacy-notice {
-            background: var(--danger-bg);
-            border: 2px solid var(--danger-border);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
+        .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(124,58,237,0.14),transparent 55%),radial-gradient(ellipse 60% 70% at 85% 30%,rgba(34,211,238,0.09),transparent 50%),radial-gradient(ellipse 50% 50% at 50% 90%,rgba(167,139,250,0.07),transparent 50%)}
+        .noise-layer{position:fixed;inset:0;z-index:0;opacity:0.025;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:180px}
+        .orbs-container{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+        .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.3;animation:drift 25s ease-in-out infinite}
+        .orb:nth-child(1){width:320px;height:320px;background:var(--accent-deep);top:-10%;left:5%}
+        .orb:nth-child(2){width:250px;height:250px;background:var(--cyan);top:60%;right:-5%;animation-delay:-8s}
+        .orb:nth-child(3){width:200px;height:200px;background:var(--accent);bottom:10%;left:30%;animation-delay:-15s}
+        @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.05)}66%{transform:translate(-20px,15px) scale(0.95)}}
 
-        .privacy-notice p {
-            color: #fca5a5;
-            font-size: 0.85rem;
-            line-height: 1.7;
-        }
+        .shell{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:0 1.5rem;min-height:100vh;display:flex;flex-direction:column}
 
-        .privacy-notice strong {
-            color: var(--danger);
-            font-weight: 700;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-darker);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Background Effects */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 0;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-50px, -50px); }
-        }
-
-        .bg-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background: 
-                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34, 211, 238, 0.12), transparent 50%),
-                radial-gradient(ellipse 60% 40% at 100% 50%, rgba(167, 139, 250, 0.08), transparent 50%);
-            pointer-events: none;
-        }
-
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 0, 0, 0.1) 2px,
-                rgba(0, 0, 0, 0.1) 4px
-            );
-            opacity: 0.2;
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-            min-height: 100vh;
-        }
-
-        /* Header */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 3rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--accent);
-            text-decoration: none;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-        }
-
-        .back-btn:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .back-btn svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .page-title {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, var(--accent), #67e8f9);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-            flex: 1;
-        }
-
-        .script-count {
-            padding: 0.5rem 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--accent);
-            border-radius: 8px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            color: var(--accent);
-        }
+        /* Top bar */
+        .topbar{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--stroke)}
+        .brand{display:flex;align-items:center;gap:0.5rem;text-decoration:none}
+        .brand-logo{height:40px;width:auto;transition:transform 0.3s}
+        .brand:hover .brand-logo{transform:rotate(-3deg) scale(1.04)}
+        .indicators{display:flex;gap:0.5rem;align-items:center}
+        .back-pill{display:inline-flex;align-items:center;gap:0.35rem;padding:0.3rem 0.75rem;background:var(--surface-2);border:1px solid var(--stroke);border-radius:100px;color:var(--text-dim);text-decoration:none;font-family:'Fira Code',monospace;font-size:0.65rem;letter-spacing:0.5px;backdrop-filter:blur(8px);transition:all 0.25s}
+        .back-pill:hover{color:var(--accent);border-color:var(--glass-hover)}
+        .back-pill svg{width:12px;height:12px}
+        .pill{display:inline-flex;align-items:center;gap:0.35rem;padding:0.3rem 0.7rem;background:var(--surface-2);border:1px solid var(--stroke);border-radius:100px;font-family:'Fira Code',monospace;font-size:0.65rem;color:var(--text-dim);backdrop-filter:blur(8px)}
+        .dot{width:6px;height:6px;border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
+        .dot--live{background:var(--cyan);box-shadow:0 0 8px rgba(34,211,238,0.5)}
+        @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
 
         /* Hero */
-        .hero {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-        }
+        .hero{margin-top:2rem;padding:2.5rem 2rem;text-align:center;background:var(--glass);backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:var(--r);position:relative;overflow:hidden;animation:rise 0.6s ease-out}
+        .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+        .hero-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;color:var(--text-bright);letter-spacing:-0.5px;margin-bottom:0.4rem}
+        .hero-title .grad{background:linear-gradient(135deg,var(--accent-bright),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+        .hero-sub{font-size:0.92rem;color:var(--text-normal);max-width:520px;margin:0 auto 1.5rem;line-height:1.7}
+        .hero-metrics{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;padding-top:1.2rem;border-top:1px solid var(--stroke)}
+        .hm{display:flex;flex-direction:column;align-items:center;gap:0.1rem}
+        .hm-val{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text-bright)}
+        .hm-key{font-size:0.58rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px}
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
+        /* Search */
+        .search-bar{margin-top:1.5rem;position:relative}
+        .search-input{width:100%;padding:0.75rem 1rem 0.75rem 2.8rem;background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:14px;color:var(--text-bright);font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;transition:all 0.3s}
+        .search-input:focus{border-color:var(--accent);box-shadow:0 0 20px rgba(167,139,250,0.12)}
+        .search-input::placeholder{color:var(--text-dim)}
+        .search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--text-dim);pointer-events:none}
 
-        .hero-title {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        /* Grid */
+        .grid-label{margin-top:2rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between}
+        .grid-label h2{font-family:'Space Grotesk',sans-serif;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--text-dim)}
+        .grid-count{font-family:'Fira Code',monospace;font-size:0.62rem;color:var(--accent);padding:0.2rem 0.6rem;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.15);border-radius:100px}
 
-        .hero-subtitle {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
+        .scripts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:1rem}
 
-        /* Scripts Grid */
-        .scripts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-            gap: 1.5rem;
-        }
+        .script-card{position:relative;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:1.4rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;overflow:hidden;transition:all 0.4s cubic-bezier(0.22,1,0.36,1);animation:rise 0.5s ease-out backwards}
+        .script-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));opacity:0;transition:opacity 0.35s}
+        .script-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(167,139,250,0.06),transparent 60%);opacity:0;transition:opacity 0.35s;pointer-events:none}
+        .script-card:hover{transform:translateY(-5px);border-color:var(--glass-hover);box-shadow:0 20px 50px rgba(0,0,0,0.4),0 0 0 1px var(--glass-hover)}
+        .script-card:hover::before,.script-card:hover::after{opacity:1}
+        .script-card.hidden-card{display:none}
 
-        .script-card {
-            position: relative;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+        .card-top{display:flex;align-items:center;gap:0.9rem;margin-bottom:0.9rem;position:relative;z-index:1}
+        .card-icon{width:52px;height:52px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid var(--glass-border);transition:transform 0.35s,border-color 0.35s;background:var(--surface-1)}
+        .script-card:hover .card-icon{transform:scale(1.08) rotate(2deg);border-color:var(--accent)}
+        .card-info{flex:1;min-width:0}
+        .card-name{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-bright);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-0.2px;margin-bottom:0.15rem}
+        .card-status{display:inline-flex;align-items:center;gap:0.3rem;font-family:'Fira Code',monospace;font-size:0.55rem;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;color:var(--success)}
+        .card-status .sd{width:5px;height:5px;border-radius:50%;background:var(--success);box-shadow:0 0 6px rgba(52,211,153,0.5);animation:pulse-dot 2s infinite}
 
-        .script-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--primary));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
+        .card-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.9rem;position:relative;z-index:1}
+        .card-tag{padding:0.15rem 0.45rem;background:rgba(255,255,255,0.03);border:1px solid var(--stroke);border-radius:100px;font-family:'Fira Code',monospace;font-size:0.52rem;color:var(--text-dim);letter-spacing:0.3px;transition:border-color 0.25s,color 0.25s}
+        .script-card:hover .card-tag{border-color:var(--glass-hover);color:var(--text-normal)}
 
-        .script-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--accent-glow), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
+        .card-cta{display:flex;align-items:center;justify-content:space-between;margin-top:auto;position:relative;z-index:1}
+        .card-cta-label{font-family:'Space Grotesk',sans-serif;font-size:0.7rem;font-weight:600;color:var(--accent);letter-spacing:0.3px;transition:color 0.25s}
+        .script-card:hover .card-cta-label{color:var(--accent-bright)}
+        .card-arrow{width:28px;height:28px;background:rgba(167,139,250,0.06);border:1px solid var(--stroke);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+        .card-arrow svg{width:13px;height:13px;stroke:var(--accent);transition:transform 0.3s}
+        .script-card:hover .card-arrow{background:var(--accent);border-color:var(--accent)}
+        .script-card:hover .card-arrow svg{stroke:var(--surface-0);transform:translateX(2px)}
 
-        .script-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: 0 20px 50px rgba(34, 211, 238, 0.15);
-        }
+        /* Stagger */
+        .script-card:nth-child(1){animation-delay:0.03s}.script-card:nth-child(2){animation-delay:0.06s}.script-card:nth-child(3){animation-delay:0.09s}
+        .script-card:nth-child(4){animation-delay:0.12s}.script-card:nth-child(5){animation-delay:0.15s}.script-card:nth-child(6){animation-delay:0.18s}
+        .script-card:nth-child(7){animation-delay:0.21s}.script-card:nth-child(8){animation-delay:0.24s}.script-card:nth-child(9){animation-delay:0.27s}
+        .script-card:nth-child(10){animation-delay:0.3s}.script-card:nth-child(11){animation-delay:0.33s}.script-card:nth-child(12){animation-delay:0.36s}
+        .script-card:nth-child(13){animation-delay:0.39s}.script-card:nth-child(14){animation-delay:0.42s}
 
-        .script-card:hover::before,
-        .script-card:hover::after {
-            opacity: 1;
-        }
-
-        .script-card-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .script-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            flex-shrink: 0;
-            transition: transform 0.3s;
-            object-fit: cover;
-            border: 2px solid var(--border-color);
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
-        }
-
-        .script-card:hover .script-icon {
-            transform: rotate(5deg) scale(1.1);
-            border-color: var(--accent);
-            box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
-        }
-
-        .script-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .script-name {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .script-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .script-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            padding: 0.2rem 0.5rem;
-            background: rgba(34, 211, 238, 0.1);
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            border-radius: 4px;
-            color: var(--success);
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .script-arrow {
-            width: 36px;
-            height: 36px;
-            background: rgba(34, 211, 238, 0.1);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .script-arrow svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--accent);
-            transition: transform 0.3s;
-        }
-
-        .script-card:hover .script-arrow {
-            background: var(--accent);
-        }
-
-        .script-card:hover .script-arrow svg {
-            stroke: var(--bg-dark);
-            transform: translateX(3px);
-        }
+        /* No results */
+        .no-results{display:none;text-align:center;padding:3rem 1rem;color:var(--text-dim);font-size:0.88rem}
+        .no-results.show{display:block}
 
         /* Footer */
-        .footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
+        .bottom-bar{margin-top:auto;padding:2.5rem 0 1.5rem;border-top:1px solid var(--stroke);text-align:center}
+        .bottom-bar-inner{display:flex;flex-direction:column;align-items:center;gap:0.5rem}
+        .bottom-brand{font-family:'Space Grotesk',sans-serif;font-size:0.75rem;font-weight:700;color:var(--text-dim);letter-spacing:3px;text-transform:uppercase}
+        .bottom-nav{display:flex;gap:1.2rem}
+        .bottom-nav a{color:var(--text-dim);text-decoration:none;font-size:0.72rem;transition:color 0.25s}
+        .bottom-nav a:hover{color:var(--accent)}
+        .bottom-note{font-size:0.68rem;color:var(--text-dim);max-width:380px;line-height:1.6}
+
+        @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+        @media(max-width:768px){
+            .shell{padding:0 1rem}
+            .topbar{flex-direction:column;gap:0.6rem}
+            .indicators{flex-wrap:wrap;justify-content:center}
+            .hero{padding:1.8rem 1.2rem}
+            .hero-metrics{gap:1.2rem}
+            .scripts-grid{grid-template-columns:1fr}
         }
 
-        .footer-text {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .footer-brand {
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* Animations */
-        .script-card {
-            animation: fadeInUp 0.5s ease-out backwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Stagger animation delays */
-        .script-card:nth-child(1) { animation-delay: 0.05s; }
-        .script-card:nth-child(2) { animation-delay: 0.1s; }
-        .script-card:nth-child(3) { animation-delay: 0.15s; }
-        .script-card:nth-child(4) { animation-delay: 0.2s; }
-        .script-card:nth-child(5) { animation-delay: 0.25s; }
-        .script-card:nth-child(6) { animation-delay: 0.3s; }
-        .script-card:nth-child(7) { animation-delay: 0.35s; }
-        .script-card:nth-child(8) { animation-delay: 0.4s; }
-        .script-card:nth-child(9) { animation-delay: 0.45s; }
-        .script-card:nth-child(10) { animation-delay: 0.5s; }
-        .script-card:nth-child(11) { animation-delay: 0.55s; }
-        .script-card:nth-child(12) { animation-delay: 0.6s; }
-        .script-card:nth-child(13) { animation-delay: 0.65s; }
-        .script-card:nth-child(14) { animation-delay: 0.7s; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .page-title {
-                font-size: 1.5rem;
-            }
-
-            .scripts-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* SEO Content Section */
-        .seo-content {
-            margin-top: 2rem;
-            padding: 3rem 2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        .seo-content::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-        .seo-content h2 {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 2.5rem 0 1rem;
-        }
-        .seo-content h2:first-of-type { margin-top: 0; }
-        .seo-content h3 {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin: 1.8rem 0 0.8rem;
-            letter-spacing: 1px;
-        }
-        .seo-content p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-        .seo-content ul, .seo-content ol {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
-        .seo-content li { margin-bottom: 0.5rem; }
-        .seo-content strong { color: var(--text-primary); }
-        .seo-content .faq-item {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .seo-content .faq-item h4 {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-        .seo-content .faq-item p { margin-bottom: 0; }
-        @media (max-width: 768px) {
-            .seo-content { padding: 2rem 1.2rem; }
-            .seo-content h2 { font-size: 1.25rem; }
-        }
+        /* SEO Content */
+        .seo-wrap{margin-top:2rem}
+        .seo-content{padding:2rem 1.8rem;background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--r);position:relative;overflow:hidden}
+        .seo-content::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+        .seo-content h2{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent);letter-spacing:-0.2px;margin:2rem 0 0.7rem}
+        .seo-content h2:first-of-type{margin-top:0}
+        .seo-content h3{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:600;color:var(--text-bright);margin:1.5rem 0 0.5rem}
+        .seo-content p{color:var(--text-dim);font-size:0.84rem;line-height:1.8;margin-bottom:0.7rem}
+        .seo-content ul,.seo-content ol{color:var(--text-dim);font-size:0.84rem;line-height:1.8;margin-bottom:0.7rem;padding-left:1.3rem}
+        .seo-content li{margin-bottom:0.3rem}
+        .seo-content strong{color:var(--text-normal)}
+        .seo-content a{color:var(--accent);text-decoration:none}
+        .seo-content a:hover{text-decoration:underline}
+        .seo-content .faq-item{background:rgba(0,0,0,0.2);border:1px solid var(--stroke);border-radius:12px;padding:1rem;margin-bottom:0.6rem}
+        .seo-content .faq-item h4{font-family:'Space Grotesk',sans-serif;font-size:0.88rem;font-weight:600;color:var(--text-bright);margin-bottom:0.3rem}
+        .seo-content .faq-item p{margin-bottom:0}
+        @media(max-width:768px){.seo-content{padding:1.4rem 1rem}.seo-content h2{font-size:0.95rem}}
     </style>
     <script defer src="https://analytics.ufomedia.xyz/script.js" data-website-id="4d044431-8765-4cc3-bb1e-14c8f64f2790"></script>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="bg-glow"></div>
-    <div class="scanlines"></div>
+    <div class="aurora"></div>
+    <div class="noise-layer"></div>
+    <div class="orbs-container"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
 
-    <div class="container">
-        <header class="header">
-            <a href="../index.html" class="back-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                BACK
-            </a>
-            <a href="../index.html" style="display:flex;align-items:center;">
-                <img src="/logo.png" alt="RoCrack" style="height:52px;width:auto;filter:drop-shadow(0 0 14px rgba(0,240,255,0.3));">
-            </a>
-            <span class="script-count">14 SCRIPTS</span>
+    <div class="shell">
+        <header class="topbar">
+            <a href="../index.html" class="brand"><img src="/logo.png" alt="RoCrack" class="brand-logo"></a>
+            <div class="indicators">
+                <a href="../index.html" class="back-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>HOME
+                </a>
+                <div class="pill"><span class="dot dot--live"></span>14 SCRIPTS</div>
+            </div>
         </header>
 
-        <div class="privacy-notice">
-            <p>&#9888; <strong>WE NEVER ASK FOR YOUR PERSONAL DATA.</strong> We only need your <strong>Roblox username</strong> (public info). We will <strong>NEVER</strong> ask for your password, email, or any account credentials.</p>
-        </div>
-
-        <div class="hero">
-            <h2 class="hero-title">Select Your Script</h2>
-            <p class="hero-subtitle">Choose from our collection of premium scripts for popular Roblox games</p>
-        </div>
-
-        <div class="scripts-grid">
-            <a href="blox/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="blox/blox.png" alt="Blox Fruits" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Blox Fruits</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="garden/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="garden/blox.png" alt="Grow a Garden" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Grow a Garden</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="deadrails/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="deadrails/blox.png" alt="Dead Rails" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Dead Rails</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="brainrot/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="brainrot/blox.png" alt="Steal a Brainrot" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Steal a Brainrot</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="forest/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="forest/blox.png" alt="99 Nights Forest" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">99 Nights Forest</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="forsaken/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="forsaken/blox.png" alt="Forsaken" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Forsaken</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="island/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="island/blox.png" alt="Build An Island" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Build An Island</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="plantsbrainrots/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="plantsbrainrots/blox.png" alt="Plants vs Brainrots" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Plants vs Brainrots</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="fishit/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="fishit/blox.png" alt="Fish It" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Fish It</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="rivals/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="rivals/blox.png" alt="Rivals" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Rivals</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="arise/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="arise/blox.png" alt="Arise Crossover" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Arise Crossover</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="brookhaven/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="brookhaven/blox.png" alt="Brookhaven" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Brookhaven</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="volleyball/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="volleyball/blox.png" alt="Volleyball Legends" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Volleyball Legends</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="fisch/index.html" class="script-card">
-                <div class="script-card-content">
-                    <img src="fisch/fisch.png" alt="Fisch" class="script-icon">
-                    <div class="script-info">
-                        <h3 class="script-name">Fisch Script</h3>
-                        <div class="script-meta">
-                            <span class="script-status">
-                                <span class="status-dot"></span>
-                                ONLINE
-                            </span>
-                        </div>
-                    </div>
-                    <div class="script-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <section class="seo-content">
-            <h2>Free Roblox Scripts — The Largest Verified Script Library for Every Game in 2026</h2>
-            <p><strong>Roblox scripts</strong> are custom Lua code programs that run inside Roblox games through executors, providing powerful gameplay enhancements, automations, and features that are not available in the standard game. The Roblox scripting ecosystem has exploded in 2026, with millions of players worldwide using scripts to auto-farm resources, enhance combat abilities, add ESP overlays for tactical awareness, automate repetitive tasks, unlock hidden features, and gain competitive advantages across thousands of different Roblox games.</p>
-            <p>RoCrack hosts the <strong>largest, most comprehensive, and most regularly updated library of free Roblox scripts</strong> available anywhere on the internet. With over 50 game-specific scripts covering the most popular titles on Roblox — from Blox Fruits and Brookhaven to Rivals, Fisch, Dead Rails, and dozens more — our library provides verified, tested, and safe scripts that work flawlessly with <strong>Delta Executor</strong> on both mobile devices and PC. Every script in our collection undergoes rigorous testing before publication, is scanned for malware, and is verified to function correctly with the latest game version.</p>
-            <p>Unlike sketchy Discord servers, random Pastebin links, or unverified script-sharing forums where outdated, broken, or malware-infected scripts are rampant, RoCrack guarantees quality, safety, and reliability for every script in our library. Our dedicated team of script testers and developers monitors every supported game 24/7, pushing compatibility updates within hours of game patches and adding new scripts as popular games emerge on the Roblox platform.</p>
-
-            <h2>Why RoCrack Is the #1 Source for Roblox Scripts</h2>
-
-            <h3>Largest Script Collection — 50+ Games Covered</h3>
-            <p>RoCrack provides scripts for more Roblox games than any other platform. Our library covers all of the most played games on Roblox including <strong>Blox Fruits, Brookhaven RP, Rivals, Fisch, Grow a Garden, Dead Rails, Brainrot</strong>, and many more. Each game has multiple script options ranging from comprehensive hub scripts with dozens of features to lightweight specialized scripts for specific tasks. No matter which Roblox game you play, RoCrack almost certainly has scripts for it.</p>
-
-            <h3>Verified &amp; Tested — Every Script Guaranteed Working</h3>
-            <p>Every script published on RoCrack goes through a multi-step verification process before reaching our users:</p>
-            <ul>
-                <li><strong>Functionality Testing</strong> — Scripts are tested in live game environments to verify that all advertised features work correctly and reliably.</li>
-                <li><strong>Malware Scanning</strong> — All script code is analyzed for malicious content including remote code execution, data exfiltration, account credential theft, and obfuscated payloads.</li>
-                <li><strong>Compatibility Verification</strong> — Scripts are confirmed to work with the latest game version and the latest version of Delta Executor on all supported platforms.</li>
-                <li><strong>Performance Assessment</strong> — Scripts are checked for performance impact to ensure they do not cause excessive lag, crashes, or other issues.</li>
-                <li><strong>Mobile Compatibility</strong> — All scripts are tested on mobile devices through Delta Executor mobile to verify full cross-platform functionality.</li>
-            </ul>
-
-            <h3>Regular Updates — Always Current</h3>
-            <p>Roblox games update frequently, and outdated scripts stop working. RoCrack's dedicated monitoring team tracks every game update and pushes script compatibility fixes rapidly — typically within hours. You will never have to hunt for working script versions or wonder if a script has been abandoned. If it is on RoCrack, it works.</p>
-
-            <h3>100% Free — No Premium Tiers</h3>
-            <p>Every single script on RoCrack is completely free to use. There are no premium tiers, no paid subscriptions, no locked features, and no hidden charges. We believe that access to quality Roblox scripts should not be gatekept behind paywalls, and we are committed to keeping our entire library free for all users.</p>
-
-            <h3>Full Mobile Support via Delta Executor</h3>
-            <p>All RoCrack scripts are fully compatible with <strong>Delta Executor mobile</strong>, meaning Android and iOS users enjoy the exact same scripting capabilities as PC users. This is a massive advantage since many competing script sources only test and support PC usage, leaving mobile players with broken or partially functional scripts.</p>
-
-            <h2>What Types of Scripts Are Available?</h2>
-            <p>The RoCrack library includes a diverse range of script types to cover every gameplay need:</p>
-
-            <h3>Auto Farm Scripts</h3>
-            <p><strong>Auto farm scripts</strong> are by far the most popular script category. These automation tools handle repetitive gameplay tasks — killing enemies, completing quests, collecting resources, earning currency — automatically and continuously. Auto farm scripts are available for virtually every game in our library, from Blox Fruits' quest and boss farming to Grow a Garden's planting and harvesting cycles, to Fisch's fishing and collection systems. AFK auto-farming on mobile is especially popular, letting players progress overnight or during school and work hours.</p>
-
-            <h3>ESP &amp; Awareness Scripts</h3>
-            <p><strong>ESP (Extrasensory Perception) scripts</strong> add visual overlays that display information normally hidden from players. Player ESP shows enemy positions through walls with health bars and name tags. Item ESP highlights valuable pickups, chests, and drops. In games like Blox Fruits, fruit ESP reveals the locations of spawned devil fruits. In Fisch, fish ESP shows what is swimming beneath the surface. ESP is one of the most universally useful script categories because information advantage applies to virtually every game genre.</p>
-
-            <h3>Combat Enhancement Scripts</h3>
-            <p>Combat scripts provide advantages in fighting-based games through features like <strong>aimbot</strong> (auto-aim for shooters), <strong>kill aura</strong> (automatic damage to nearby enemies), <strong>auto-combo</strong> (perfect ability chains), <strong>god mode</strong> (invincibility), and <strong>damage multipliers</strong> (increased attack power). These features are essential for competitive PvP games like Rivals and survival games like Dead Rails.</p>
-
-            <h3>Teleportation &amp; Navigation Scripts</h3>
-            <p>Teleportation scripts eliminate travel time by instantly moving your character to any location in the game. <strong>Speed boosts, flight, and noclip</strong> features enhance navigation capabilities. These tools are available for every game in our library and are especially valuable in large open-world games where travel between locations consumes significant time.</p>
-
-            <h3>Admin &amp; Troll Scripts</h3>
-            <p>Primarily popular in roleplay games like Brookhaven, admin scripts provide <strong>server control features</strong> like player teleportation, character modification, object spawning, and environment manipulation. Trolling scripts add fun chaos with features like player fling, character scaling, and effect spam.</p>
-
-            <h3>Hub Scripts — All-in-One Packages</h3>
-            <p><strong>Hub scripts</strong> (also called script hubs) are comprehensive packages that bundle multiple features into a single script with a graphical user interface. Popular hubs like Overflow, Soluna, and Mango Hub for Blox Fruits include auto-farm, ESP, combat, teleportation, and dozens of other features accessible through organized menus. Hubs are the most popular script format because they provide everything you need in one convenient package.</p>
-
-            <h2>How to Use Roblox Scripts — Complete Beginner Guide</h2>
-            <p>If you are new to Roblox scripting, here is everything you need to know to get started:</p>
-
-            <h3>What You Need</h3>
-            <ol>
-                <li><strong>A Roblox Account</strong> — We recommend using an alternate account for scripting to protect your main account.</li>
-                <li><strong>Delta Executor</strong> — Download the latest version from RoCrack. Available for Android, iOS, and Windows PC.</li>
-                <li><strong>Scripts</strong> — Browse the RoCrack script library and choose scripts for your favorite games.</li>
-            </ol>
-
-            <h3>Step-by-Step Execution Guide</h3>
-            <ol>
-                <li><strong>Download and Install Delta Executor</strong> — Follow the installation guide on the RoCrack Delta Executor page for your platform.</li>
-                <li><strong>Generate Your Key</strong> — Complete the verification process to receive your Delta Executor activation key.</li>
-                <li><strong>Open Roblox</strong> — Launch Roblox and join the game you want to script in.</li>
-                <li><strong>Launch Delta Executor</strong> — Open Delta Executor alongside your Roblox game.</li>
-                <li><strong>Inject Into Roblox</strong> — Click the "Inject" button in Delta and wait for successful injection confirmation.</li>
-                <li><strong>Copy Your Script</strong> — Visit the RoCrack script page for your game and copy the script code.</li>
-                <li><strong>Paste and Execute</strong> — Paste the script into Delta's script editor and click "Execute."</li>
-                <li><strong>Configure Features</strong> — The script's GUI will appear. Toggle features on and off as desired.</li>
-            </ol>
-
-            <h3>Tips for New Scripters</h3>
-            <ul>
-                <li>Always use an alternate Roblox account when scripting</li>
-                <li>Start with simple features before enabling everything at once</li>
-                <li>Read the script description on RoCrack to understand what each script does before executing</li>
-                <li>Keep Delta Executor updated by using the latest version from RoCrack</li>
-                <li>Join the RoCrack community for help, tips, and script recommendations</li>
-            </ul>
-
-            <h2>Script Safety — How RoCrack Protects You</h2>
-            <p>Script safety is a top priority at RoCrack. Here is how we protect our users:</p>
-            <ul>
-                <li><strong>Malware Scanning</strong> — Every script is scanned for malicious code before publication.</li>
-                <li><strong>Code Review</strong> — Our team reviews script code for hidden dangers like remote backdoors and data theft.</li>
-                <li><strong>Community Reporting</strong> — Users can report suspicious scripts, and our team investigates reports immediately.</li>
-                <li><strong>Verified Developers</strong> — We track script developers' reputations and only feature scripts from trusted sources.</li>
-                <li><strong>Regular Audits</strong> — All scripts in our library undergo periodic re-verification to ensure they remain safe and functional.</li>
-            </ul>
-
-            <h2>Frequently Asked Questions — Roblox Scripts</h2>
-            <div class="faq-item">
-                <h4>What are Roblox scripts?</h4>
-                <p>Roblox scripts are custom Lua programs that run inside Roblox games through an executor like Delta Executor. They provide features like auto-farm, ESP, combat enhancement, teleportation, and more.</p>
+        <!-- Hero -->
+        <section class="hero">
+            <h1 class="hero-title"><span class="grad">Script Library</span></h1>
+            <p class="hero-sub">Browse our collection of premium, verified scripts for the most popular Roblox games. All free, all tested, all updated daily.</p>
+            <div class="hero-metrics">
+                <div class="hm"><span class="hm-val">14</span><span class="hm-key">Games</span></div>
+                <div class="hm"><span class="hm-val">500+</span><span class="hm-key">Scripts</span></div>
+                <div class="hm"><span class="hm-val">100%</span><span class="hm-key">Free</span></div>
+                <div class="hm"><span class="hm-val">24/7</span><span class="hm-key">Updates</span></div>
             </div>
-            <div class="faq-item">
-                <h4>Are RoCrack scripts safe?</h4>
-                <p>Yes. Every script undergoes malware scanning, code review, and functionality testing before publication. We only feature scripts from verified, trusted sources.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Do scripts work on mobile?</h4>
-                <p>All RoCrack scripts are fully compatible with Delta Executor mobile on Android and iOS devices, providing identical features to the PC version.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Are the scripts free?</h4>
-                <p>Every script on RoCrack is 100% free. No premium tiers, no subscriptions, no paywalls.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Which games have scripts available?</h4>
-                <p>RoCrack covers 50+ popular Roblox games including Blox Fruits, Brookhaven, Rivals, Fisch, Grow a Garden, Dead Rails, Brainrot, and many more. Browse our library to see all available scripts.</p>
-            </div>
-            <div class="faq-item">
-                <h4>How do I use scripts?</h4>
-                <p>Download Delta Executor from RoCrack, join your Roblox game, inject Delta, copy a script from our library, paste it into Delta, and click Execute. See our detailed guide above.</p>
-            </div>
-            <div class="faq-item">
-                <h4>What executor do I need?</h4>
-                <p>We recommend Delta Executor — the most powerful free Roblox executor available, with full mobile and PC support. Download it from RoCrack.</p>
-            </div>
-            <div class="faq-item">
-                <h4>How often are scripts updated?</h4>
-                <p>Our team monitors all supported games 24/7 and updates scripts within hours of game patches. You can always count on RoCrack scripts being current and functional.</p>
-            </div>
-
-            <p>Explore the ultimate <strong>Roblox script library</strong> at RoCrack — the largest, safest, and most regularly updated collection of free scripts available anywhere. With scripts for 50+ games, full mobile support through <strong>Delta Executor</strong>, rigorous safety testing, and constant updates, RoCrack is the only script source you will ever need. Browse our collection, find scripts for your favorite games, and elevate your Roblox experience today.</p>
-
-
-            <h2>Understanding Roblox Scripts — A Deep Technical Guide</h2>
-            <p>To truly appreciate what <strong>Roblox scripts</strong> can accomplish, it helps to understand the technical foundations. Roblox games are built using <strong>Lua</strong> (specifically Roblox's custom variant called <strong>Luau</strong>), a lightweight, embeddable scripting language originally designed for extending applications. Every feature in every Roblox game — from character movement to combat systems, inventory management, and visual effects — is powered by Lua scripts running on Roblox's game engine.</p>
-            <p>When you use a <strong>Roblox executor</strong> like Delta Executor to run a custom script, you are essentially injecting additional Lua code into the game's runtime environment. This injected code can interact with the game's existing systems — reading data like player positions and health values (for ESP), modifying properties like character speed and jump height, triggering game functions like teleportation and item collection, and creating new functionality that the original developers never implemented.</p>
-            <p>The sophistication of modern Roblox scripts is remarkable. Today's premium script hubs are effectively full applications with their own graphical user interfaces, configuration systems, data persistence, error handling, and modular architecture. Scripts like Overflow and Soluna contain thousands of lines of carefully optimized code developed by skilled programmers who understand both Lua programming and the specific game mechanics they are automating.</p>
-
-            <h3>Script Execution Levels Explained</h3>
-            <p>Roblox executors are categorized by their <strong>execution level</strong>, which determines what kinds of scripts they can run and what game functions they can access:</p>
-            <ul>
-                <li><strong>Level 1-4 (Basic)</strong> — Can run simple scripts with limited function access. Suitable only for basic teleportation and character modifications.</li>
-                <li><strong>Level 5-6 (Intermediate)</strong> — Moderate capability with access to more game functions. Can run many popular scripts but may struggle with complex hubs.</li>
-                <li><strong>Level 7 (Advanced)</strong> — High capability with extensive function access. Can run most scripts reliably.</li>
-                <li><strong>Level 8 (Maximum)</strong> — Full capability with complete function access. Can run any script regardless of complexity. Delta Executor operates at this level.</li>
-            </ul>
-            <p>The execution level directly impacts which scripts will work with a given executor. Scripts designed for Level 8 executors often use advanced functions and techniques that lower-level executors cannot process, resulting in errors or partial functionality. This is why using a Level 8 executor like Delta is essential for accessing the full RoCrack script library.</p>
-
-            <h2>Script Categories — Detailed Guide to Every Type</h2>
-
-            <h3>Universal Scripts — Work Across Multiple Games</h3>
-            <p>Some scripts are designed to work in any Roblox game, regardless of the specific game mechanics. These <strong>universal scripts</strong> include:</p>
-            <ul>
-                <li><strong>Speed Hacks</strong> — Modify your character's walk and run speed universally across all games.</li>
-                <li><strong>Jump Power</strong> — Increase jump height in any game that uses standard Roblox character physics.</li>
-                <li><strong>Fly Scripts</strong> — Enable free flight in any game, bypassing terrain and obstacles.</li>
-                <li><strong>Noclip</strong> — Walk through solid objects in any game, useful for exploration and bypassing barriers.</li>
-                <li><strong>Infinite Yield</strong> — A popular universal admin script that provides dozens of commands usable in virtually any game.</li>
-                <li><strong>Dark Dex</strong> — A development tool that exposes the internal structure of any Roblox game, useful for understanding how games work.</li>
-                <li><strong>ESP Frameworks</strong> — Basic player and object ESP that works across games by reading standard Roblox character data.</li>
-            </ul>
-
-            <h3>Game-Specific Scripts — Tailored for Maximum Impact</h3>
-            <p><strong>Game-specific scripts</strong> are designed for individual Roblox games and leverage deep understanding of that game's unique mechanics, data structures, and systems. These scripts are far more powerful than universal scripts because they interact directly with game-specific functions rather than generic Roblox systems. A Blox Fruits auto-farm script, for example, understands the game's quest system, NPC locations, combat mechanics, fruit spawning patterns, and progression logic — knowledge that a universal script simply does not have.</p>
-            <p>RoCrack specializes in game-specific scripts because they deliver dramatically more value to users. Our development team reverse-engineers popular games to understand their internal systems, then builds scripts that interact with those systems directly for maximum reliability and feature depth.</p>
-
-            <h2>The Script Development Process — How RoCrack Scripts Are Made</h2>
-            <p>Creating a high-quality Roblox script is a complex process that involves multiple stages:</p>
-            <ol>
-                <li><strong>Game Analysis</strong> — Developers study the target game's mechanics, data structures, and internal systems using decompilation and debugging tools.</li>
-                <li><strong>Feature Planning</strong> — The development team identifies which features would be most valuable to users and plans the script's architecture.</li>
-                <li><strong>Core Development</strong> — The main script code is written, implementing the planned features using Lua/Luau.</li>
-                <li><strong>GUI Design</strong> — A user-friendly graphical interface is designed with organized menus, toggle buttons, and configuration options.</li>
-                <li><strong>Testing Phase</strong> — The script undergoes extensive testing across different platforms, executor versions, and game scenarios.</li>
-                <li><strong>Optimization</strong> — Code is optimized for performance to minimize lag and resource usage, especially important for mobile users.</li>
-                <li><strong>Security Review</strong> — The script is reviewed for any security issues and anti-detection measures are implemented.</li>
-                <li><strong>Publication</strong> — The verified script is published on RoCrack with documentation and feature descriptions.</li>
-                <li><strong>Ongoing Maintenance</strong> — The script is continuously updated for game patches, bug fixes, and feature additions.</li>
-            </ol>
-
-            <h2>Mobile Scripting Revolution — How RoCrack Changed Everything</h2>
-            <p>The rise of mobile gaming has fundamentally transformed the Roblox scripting landscape. Over 60% of Roblox players now access the platform primarily through mobile devices, yet until the advent of <strong>Delta Executor mobile</strong>, these players were completely locked out of the scripting ecosystem. RoCrack and Delta Executor changed everything by bringing full scripting capabilities to Android and iOS devices.</p>
-            <p>Mobile scripting opens up entirely new use cases that desktop scripting cannot match. The portability of phones means you can farm and progress in Roblox games anywhere — during commutes, at school during breaks, in waiting rooms, or relaxing in bed. The always-on nature of mobile devices enables true 24/7 farming sessions that desktop users find inconvenient due to computer power consumption and noise. And the personal, private nature of phone usage means scripting on mobile is inherently more discreet than on a shared family computer.</p>
-            <p>RoCrack recognized this mobile revolution early and made mobile compatibility a mandatory requirement for every script in our library. Unlike competing platforms where mobile support is an afterthought, every RoCrack script is designed, tested, and optimized for mobile usage from the very beginning. This mobile-first approach ensures that our growing mobile user base receives the same premium scripting experience as desktop users.</p>
-
-            <h2>Script Safety Best Practices — Comprehensive Protection Guide</h2>
-            <p>Using Roblox scripts inherently carries some risk. Here are comprehensive safety practices that minimize those risks:</p>
-
-            <h3>Account Protection</h3>
-            <ul>
-                <li><strong>Always Use Alternate Accounts</strong> — This is the single most important safety rule. Create a separate Roblox account for scripting and never use scripts on your main account. If anything goes wrong, only the alternate account is affected.</li>
-                <li><strong>Enable Two-Factor Authentication</strong> — Protect all your accounts (main and alternates) with 2FA to prevent unauthorized access.</li>
-                <li><strong>Use Strong Unique Passwords</strong> — Each Roblox account should have its own strong, unique password that is not used on any other website.</li>
-                <li><strong>Do Not Link Personal Information</strong> — Avoid linking personal email addresses, phone numbers, or payment methods to alternate accounts used for scripting.</li>
-            </ul>
-
-            <h3>Script Source Verification</h3>
-            <ul>
-                <li><strong>Only Use Trusted Sources</strong> — Download scripts exclusively from verified platforms like RoCrack. Random Discord servers, Pastebin links, and unknown websites are high-risk sources.</li>
-                <li><strong>Check for Obfuscation</strong> — Heavily obfuscated scripts (unreadable code) may hide malicious functions. RoCrack reviews all scripts for hidden malicious code.</li>
-                <li><strong>Verify Developer Reputation</strong> — Scripts from well-known developers with established reputations are inherently safer than scripts from unknown sources.</li>
-                <li><strong>Read Community Reviews</strong> — Check what other users are saying about a script before executing it.</li>
-            </ul>
-
-            <h3>Executor Security</h3>
-            <ul>
-                <li><strong>Use Official Delta Executor</strong> — Download Delta exclusively from RoCrack to avoid tampered versions.</li>
-                <li><strong>Keep Executor Updated</strong> — Always use the latest version for the best security features and anti-ban protection.</li>
-                <li><strong>Antivirus Exceptions</strong> — Add Delta Executor to your antivirus exceptions. False positive detections are common with executors, but verified RoCrack downloads are safe.</li>
-            </ul>
-
-            <h2>Roblox Scripting Community — Join the Movement</h2>
-            <p>The Roblox scripting community is one of the most active and creative gaming communities in the world. Millions of players share scripts, develop new tools, discuss strategies, and help each other navigate the scripting ecosystem. RoCrack serves as a central hub for this community, providing not just scripts and tools but also a platform for learning, sharing, and collaboration.</p>
-            <p>Whether you are a complete beginner who has never used a script before or an experienced developer who creates your own automation tools, the RoCrack community welcomes you. Our platform provides the scripts, Delta Executor provides the power, and the community provides the knowledge and support to help every player succeed in their Roblox scripting journey.</p>
-            <p>The future of Roblox scripting is brighter than ever. As games become more complex, as mobile gaming continues to dominate, and as the scripting community continues to innovate, the tools and capabilities available to scripters will only improve. RoCrack is committed to leading this evolution, constantly expanding our script library, enhancing Delta Executor's capabilities, and providing the best possible experience for our users worldwide.</p>
-
-
-            <h2>Understanding Anti-Ban Technology — How Scripts Stay Safe</h2>
-            <p>One of the most important concerns for anyone using Roblox scripts is account safety. <strong>Delta Executor's anti-ban technology</strong> is specifically designed to address this concern with a multi-layered approach that makes script detection extremely difficult for Roblox's anti-cheat systems. Understanding how this protection works helps you appreciate why Delta is the safest executor choice available.</p>
-            <p>The first layer of protection is <strong>memory obfuscation</strong>. When Delta injects into Roblox, it encrypts its presence in the game's memory space using advanced encryption algorithms that change with every session. Anti-cheat systems that scan memory for known executor signatures will find nothing recognizable because Delta's memory footprint looks different every single time. This makes signature-based detection — the most common anti-cheat method — completely ineffective against Delta.</p>
-            <p>The second layer is <strong>process concealment</strong>. Delta disguises its running process as a legitimate system application, preventing detection through process enumeration techniques. Even if Roblox's anti-cheat attempts to check which processes are running alongside the game, Delta appears as a normal, non-threatening application.</p>
-            <p>The third layer is <strong>behavioral analysis evasion</strong>. More sophisticated anti-cheat systems do not just look for executors — they analyze player behavior for patterns that indicate automation or scripted actions. Delta addresses this with intelligent randomization systems that add slight variations to automated actions, making scripted behavior statistically indistinguishable from human gameplay. Auto-farm movements include small random deviations, aimbot tracking incorporates human-like imperfections, and action timing is varied to avoid suspiciously consistent patterns.</p>
-            <p>The fourth layer is <strong>heartbeat integrity</strong>. Roblox periodically sends integrity checks (heartbeats) to verify the game client has not been modified. Delta intercepts these checks and responds with data indicating a clean, unmodified game state. This prevents the server from detecting that an executor is active.</p>
-            <p>While no anti-ban system can provide absolute guarantees — Roblox continuously updates their detection methods — Delta's layered approach provides the strongest protection available. Our security team actively monitors Roblox's anti-cheat updates and pushes counter-measures rapidly, maintaining our industry-leading low ban rate.</p>
-
-            <h2>Script Performance Optimization — Getting the Best Experience</h2>
-            <p>Getting the best performance from your scripts requires understanding a few key optimization principles:</p>
-            <h3>Device-Specific Optimization</h3>
-            <ul>
-                <li><strong>High-End Devices (8GB+ RAM)</strong> — You can run full hub scripts with all features enabled simultaneously. Performance will be smooth and responsive.</li>
-                <li><strong>Mid-Range Devices (4-6GB RAM)</strong> — Enable only the features you actively need. Disable ESP overlays and visual effects when not required to free up processing power for auto-farm functions.</li>
-                <li><strong>Lower-End Devices (2-3GB RAM)</strong> — Use lightweight specialized scripts instead of full hubs. Focus on one primary feature at a time (e.g., auto-farm only, or ESP only). Keep Roblox graphics at minimum settings.</li>
-            </ul>
-
-            <h3>Network Optimization</h3>
-            <p>Script performance is affected by your internet connection quality. Features like teleportation, server hopping, and real-time ESP work best on stable connections with low latency. Use WiFi instead of mobile data when possible. If you experience frequent disconnections during AFK farming, ensure your WiFi router has a stable signal where your device is located, and consider disabling WiFi sleep mode in your device settings to prevent connection drops during screen-off periods.</p>
-
-            <h3>Battery and Thermal Management</h3>
-            <p>Extended mobile scripting sessions generate heat and consume battery. To optimize for long AFK sessions: remove phone cases to improve heat dissipation, keep the device on a cool surface, charge with a quality charger that does not cause excessive heat, reduce screen brightness to minimum, and enable battery saver mode if your script does not require foreground execution. Some users place their phone near an air conditioning vent or use a small desk fan for additional cooling during overnight farming sessions.</p>
-
-            <h2>RoCrack Script Library Deep Dive — Quality Standards</h2>
-            <p>Every script in the RoCrack library meets our strict quality standards before publication. Our quality assurance process evaluates scripts across five critical dimensions:</p>
-            <ul>
-                <li><strong>Feature Completeness</strong> — All advertised features must work correctly and deliver meaningful gameplay improvements. Scripts with broken or non-functional features are rejected.</li>
-                <li><strong>Stability</strong> — Scripts must run for extended periods without crashes, memory leaks, or performance degradation. AFK farming scripts undergo 8+ hour stability tests.</li>
-                <li><strong>Safety</strong> — All code is scanned for malicious elements including remote code execution, data exfiltration, unauthorized network connections, and obfuscated payload delivery.</li>
-                <li><strong>User Experience</strong> — Script GUIs must be intuitive, well-organized, and functional on both desktop and mobile platforms. Confusing or poorly designed interfaces result in revision requests.</li>
-                <li><strong>Performance Impact</strong> — Scripts must not cause excessive lag or FPS drops. Resource usage is benchmarked on both high-end and mid-range devices to ensure broad compatibility.</li>
-            </ul>
-            <p>This rigorous quality assurance is what separates RoCrack from every other script source and is the reason millions of users trust our platform for their Roblox scripting needs. When you download a script from RoCrack, you can be confident it works, it is safe, and it will deliver the experience promised.</p>
-
-            <h2>Comparing RoCrack to Other Script Sources</h2>
-            <p>To illustrate why RoCrack is the superior choice, here is how we compare to common alternative script sources:</p>
-            <ul>
-                <li><strong>vs Discord Servers</strong> — Discord servers share scripts with zero quality control. Malware is common, scripts are often outdated, and there is no guarantee anything works. RoCrack verifies every script.</li>
-                <li><strong>vs Pastebin/Raw Links</strong> — Anonymous paste sites have no accountability. Scripts can be modified by anyone and links can redirect to malicious content. RoCrack serves scripts directly from our secured servers.</li>
-                <li><strong>vs YouTube Descriptions</strong> — Video descriptions often link to outdated scripts or monetization redirects (link shorteners with ads). RoCrack provides direct access without redirects.</li>
-                <li><strong>vs Paid Script Services</strong> — Some services charge for scripts that RoCrack provides free. Our free scripts match or exceed paid alternatives in quality and features.</li>
-                <li><strong>vs Forum Posts</strong> — Scripting forums have varying quality and outdated posts remain accessible long after scripts stop working. RoCrack's library is actively maintained with only working scripts.</li>
-            </ul>
         </section>
 
-        <footer class="footer">
-            <p class="footer-text">
-                © 2026 <span class="footer-brand">RoCrack</span> • Premium Roblox Scripts
-            </p>
-                    <div style="display:flex;gap:1.5rem;justify-content:center;margin-top:0.5rem;">
-                <a href="../../../../../../terms.html" style="color:#55556a;text-decoration:none;font-size:0.8rem;">Terms of Service</a>
-                <a href="../../../../../../privacy.html" style="color:#55556a;text-decoration:none;font-size:0.8rem;">Privacy Policy</a>
+        <!-- Search -->
+        <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search games...">
+        </div>
+
+        <!-- Grid -->
+        <div class="grid-label">
+            <h2>All Games</h2>
+            <span class="grid-count" id="visibleCount">14 available</span>
+        </div>
+
+        <div class="scripts-grid" id="scriptsGrid">
+            <a href="blox/index.html" class="script-card" data-name="Blox Fruits">
+                <div class="card-top">
+                    <img src="blox/blox.png" alt="Blox Fruits" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Blox Fruits</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Farm</span><span class="card-tag">Fruit ESP</span><span class="card-tag">PvP</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="garden/index.html" class="script-card" data-name="Grow a Garden">
+                <div class="card-top">
+                    <img src="garden/blox.png" alt="Grow a Garden" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Grow a Garden</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Plant</span><span class="card-tag">Auto Sell</span><span class="card-tag">AFK</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="rivals/index.html" class="script-card" data-name="Rivals">
+                <div class="card-top">
+                    <img src="rivals/blox.png" alt="Rivals" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Rivals</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Aimbot</span><span class="card-tag">ESP</span><span class="card-tag">No Recoil</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="fisch/index.html" class="script-card" data-name="Fisch">
+                <div class="card-top">
+                    <img src="fisch/fisch.png" alt="Fisch" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Fisch</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Fish</span><span class="card-tag">Fish ESP</span><span class="card-tag">Teleport</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="deadrails/index.html" class="script-card" data-name="Dead Rails">
+                <div class="card-top">
+                    <img src="deadrails/blox.png" alt="Dead Rails" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Dead Rails</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">God Mode</span><span class="card-tag">Kill Aura</span><span class="card-tag">Aimbot</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="brookhaven/index.html" class="script-card" data-name="Brookhaven">
+                <div class="card-top">
+                    <img src="brookhaven/blox.png" alt="Brookhaven" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Brookhaven</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Admin</span><span class="card-tag">Troll</span><span class="card-tag">Vehicles</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="brainrot/index.html" class="script-card" data-name="Steal a Brainrot">
+                <div class="card-top">
+                    <img src="brainrot/blox.png" alt="Steal a Brainrot" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Steal a Brainrot</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Place</span><span class="card-tag">Auto Upgrade</span><span class="card-tag">AFK</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="forest/index.html" class="script-card" data-name="99 Nights Forest">
+                <div class="card-top">
+                    <img src="forest/blox.png" alt="99 Nights Forest" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">99 Nights Forest</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Chop</span><span class="card-tag">Auto Sell</span><span class="card-tag">ESP</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="forsaken/index.html" class="script-card" data-name="Forsaken">
+                <div class="card-top">
+                    <img src="forsaken/blox.png" alt="Forsaken" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Forsaken</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Quest</span><span class="card-tag">Boss Farm</span><span class="card-tag">ESP</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="island/index.html" class="script-card" data-name="Build An Island">
+                <div class="card-top">
+                    <img src="island/blox.png" alt="Build An Island" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Build An Island</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Gather</span><span class="card-tag">Auto Build</span><span class="card-tag">ESP</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="plantsbrainrots/index.html" class="script-card" data-name="Plants vs Brainrots">
+                <div class="card-top">
+                    <img src="plantsbrainrots/blox.png" alt="Plants vs Brainrots" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Plants vs Brainrots</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Place</span><span class="card-tag">Strategy AI</span><span class="card-tag">AFK</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="fishit/index.html" class="script-card" data-name="Fish It">
+                <div class="card-top">
+                    <img src="fishit/blox.png" alt="Fish It" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Fish It</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Cast</span><span class="card-tag">Perfect Catch</span><span class="card-tag">Teleport</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="arise/index.html" class="script-card" data-name="Arise Crossover">
+                <div class="card-top">
+                    <img src="arise/blox.png" alt="Arise Crossover" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Arise Crossover</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Summon</span><span class="card-tag">Auto Quest</span><span class="card-tag">AFK</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <a href="volleyball/index.html" class="script-card" data-name="Volleyball Legends">
+                <div class="card-top">
+                    <img src="volleyball/blox.png" alt="Volleyball Legends" class="card-icon">
+                    <div class="card-info">
+                        <div class="card-name">Volleyball Legends</div>
+                        <span class="card-status"><span class="sd"></span>Online</span>
+                    </div>
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Auto Serve</span><span class="card-tag">Aim Assist</span><span class="card-tag">Speed</span>
+                </div>
+                <div class="card-cta">
+                    <span class="card-cta-label">Get Script</span>
+                    <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+        </div>
+
+        <div class="no-results" id="noResults">No scripts found matching your search.</div>
+
+        <div class="seo-wrap">
+            <section class="seo-content">
+                <h2>Free Roblox Scripts — The Largest Verified Script Library for Every Game in 2026</h2>
+                <p><strong>Roblox scripts</strong> are custom Lua code programs that run inside Roblox games through executors, providing powerful gameplay enhancements, automations, and features that are not available in the standard game. The Roblox scripting ecosystem has exploded in 2026, with millions of players worldwide using scripts to auto-farm resources, enhance combat abilities, add ESP overlays for tactical awareness, automate repetitive tasks, unlock hidden features, and gain competitive advantages across thousands of different Roblox games.</p>
+                <p>RoCrack hosts the <strong>largest, most comprehensive, and most regularly updated library of free Roblox scripts</strong> available anywhere on the internet. With over 50 game-specific scripts covering the most popular titles on Roblox — from Blox Fruits and Brookhaven to Rivals, Fisch, Dead Rails, and dozens more — our library provides verified, tested, and safe scripts that work flawlessly with <strong>Delta Executor</strong> on both mobile devices and PC.</p>
+
+                <h2>Why RoCrack Is the #1 Source for Roblox Scripts</h2>
+                <h3>Largest Script Collection — 50+ Games Covered</h3>
+                <p>RoCrack provides scripts for more Roblox games than any other platform. Our library covers all of the most played games on Roblox including <strong>Blox Fruits, Brookhaven RP, Rivals, Fisch, Grow a Garden, Dead Rails, Brainrot</strong>, and many more.</p>
+                <h3>Verified &amp; Tested — Every Script Guaranteed Working</h3>
+                <p>Every script published on RoCrack goes through a multi-step verification process before reaching our users: functionality testing, malware scanning, compatibility verification, performance assessment, and mobile compatibility testing.</p>
+                <h3>100% Free — No Premium Tiers</h3>
+                <p>Every single script on RoCrack is completely free to use. There are no premium tiers, no paid subscriptions, no locked features, and no hidden charges.</p>
+
+                <h2>How to Use Roblox Scripts — Quick Guide</h2>
+                <ol>
+                    <li><strong>Download Delta Executor</strong> — Get it free from the RoCrack homepage.</li>
+                    <li><strong>Generate Your Key</strong> — Complete verification to receive your activation key.</li>
+                    <li><strong>Open Roblox</strong> — Join the game you want to script in.</li>
+                    <li><strong>Inject &amp; Execute</strong> — Open Delta, inject, paste your script, and run.</li>
+                </ol>
+
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h4>Are RoCrack scripts safe?</h4>
+                    <p>Yes. Every script undergoes malware scanning, code review, and functionality testing before publication.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do scripts work on mobile?</h4>
+                    <p>All RoCrack scripts are fully compatible with Delta Executor mobile on Android and iOS.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are the scripts free?</h4>
+                    <p>Every script on RoCrack is 100% free. No premium tiers, no subscriptions, no paywalls.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Which games have scripts?</h4>
+                    <p>RoCrack covers 14+ popular Roblox games including Blox Fruits, Brookhaven, Rivals, Fisch, Grow a Garden, Dead Rails, and many more.</p>
+                </div>
+            </section>
+        </div>
+
+        <footer class="bottom-bar">
+            <div class="bottom-bar-inner">
+                <span class="bottom-brand">RoCrack</span>
+                <div class="bottom-nav">
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../privacy.html">Privacy Policy</a>
+                </div>
+                <p class="bottom-note">Not affiliated with Roblox Corporation. We never ask for your password — only your public username.</p>
             </div>
-            <p style="color:#55556a;font-size:0.72rem;margin-top:0.5rem;">We never ask for your password or personal data — only your username.</p>
         </footer>
     </div>
 
     <script>
-        // Custom path tracking for Umami
+        const searchInput = document.getElementById('searchInput');
+        const grid = document.getElementById('scriptsGrid');
+        const cards = grid.querySelectorAll('.script-card');
+        const noResults = document.getElementById('noResults');
+        const visibleCount = document.getElementById('visibleCount');
+
+        searchInput.addEventListener('input', () => {
+            const q = searchInput.value.toLowerCase().trim();
+            let count = 0;
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const tags = card.querySelector('.card-tags')?.textContent.toLowerCase() || '';
+                const match = name.includes(q) || tags.includes(q);
+                card.classList.toggle('hidden-card', !match);
+                if (match) count++;
+            });
+            noResults.classList.toggle('show', count === 0);
+            visibleCount.textContent = count + ' available';
+        });
+    </script>
+
+    <script>
         const VIRTUAL_PATH = '/scripts';
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof umami !== 'undefined') {
                 umami.track(props => ({ ...props, url: VIRTUAL_PATH }));
             }
         });
-        
-        // Track step changes
         function trackStep(stepName) {
             if (typeof umami !== 'undefined') {
                 umami.track(props => ({ ...props, url: VIRTUAL_PATH + '/' + stepName }));

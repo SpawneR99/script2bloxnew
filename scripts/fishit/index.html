@@ -11,22 +11,22 @@
     <title>Fish It Script - Free Auto Fish & Hacks | RoCrack 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #10b981;
-            --primary-glow: rgba(16, 185, 129, 0.5);
+            --primary: #22d3ee;
+            --primary-glow: rgba(34, 211, 238, 0.5);
             --primary-dark: #059669;
-            --accent: #22c55e;
-            --bg-dark: #0a0a0f;
-            --bg-darker: #050508;
-            --bg-card: rgba(15, 15, 25, 0.9);
+            --accent: #a78bfa;
+            --bg-dark: #0c0c1d;
+            --bg-darker: #06060f;
+            --bg-card: rgba(18, 18, 42, 0.9);
             --text-primary: #ffffff;
             --text-secondary: #a0a0b5;
             --text-muted: #5a5a70;
-            --border-color: rgba(16, 185, 129, 0.2);
-            --success: #00ff6a;
-            --warning: #ffaa00;
+            --border-color: rgba(34, 211, 238, 0.2);
+            --success: #22d3ee;
+            --warning: #fb923c;
         }
         .privacy-notice {
             background: rgba(239, 68, 68, 0.08);
@@ -57,7 +57,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-darker);
             color: var(--text-primary);
             min-height: 100vh;
@@ -71,8 +71,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: 0;
         }
@@ -85,8 +85,8 @@
             height: 100%;
             z-index: 0;
             background: 
-                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16, 185, 129, 0.15), transparent 50%),
-                radial-gradient(ellipse 60% 40% at 100% 100%, rgba(34, 197, 94, 0.08), transparent 50%);
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34, 211, 238, 0.15), transparent 50%),
+                radial-gradient(ellipse 60% 40% at 100% 100%, rgba(167, 139, 250, 0.08), transparent 50%);
             pointer-events: none;
         }
 
@@ -149,12 +149,12 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(34, 211, 238, 0.1);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--primary);
             text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.8rem;
             transition: all 0.3s;
         }
@@ -182,23 +182,23 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.4rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(34, 211, 238, 0.1);
             border: 1px solid var(--primary);
             border-radius: 50px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.75rem;
             color: var(--primary);
             margin-bottom: 1rem;
         }
 
         .header-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.8rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, var(--primary), #6ee7b7);
+            background: linear-gradient(90deg, var(--primary), #67e8f9);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -227,7 +227,7 @@
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.85rem;
         }
 
@@ -285,17 +285,17 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.4rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(34, 211, 238, 0.1);
             border: 1px solid var(--primary);
             border-radius: 50px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.75rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
         }
 
         .step-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -313,7 +313,7 @@
         }
 
         .instructions-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 0.9rem;
             color: var(--primary);
             margin-bottom: 1rem;
@@ -342,7 +342,7 @@
             height: 24px;
             background: var(--primary);
             color: var(--bg-dark);
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 0.75rem;
             font-weight: 700;
             border-radius: 50%;
@@ -371,7 +371,7 @@
 
         .input-label {
             display: block;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
@@ -386,7 +386,7 @@
             border: 2px solid var(--border-color);
             border-radius: 12px;
             color: var(--text-primary);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 1rem;
             outline: none;
             transition: all 0.3s;
@@ -408,7 +408,7 @@
             border: none;
             border-radius: 12px;
             color: var(--bg-dark);
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -436,7 +436,7 @@
             border: 2px solid var(--border-color);
             border-radius: 12px;
             color: var(--text-primary);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 1rem;
             outline: none;
             cursor: pointer;
@@ -523,11 +523,11 @@
             justify-content: center;
             gap: 0.5rem;
             padding: 1rem;
-            background: rgba(0, 255, 106, 0.1);
+            background: rgba(34, 211, 238, 0.1);
             border: 1px solid var(--success);
             border-radius: 12px;
             color: var(--success);
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -560,7 +560,7 @@
         }
 
         .info-label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.8rem;
             color: var(--text-muted);
             text-transform: uppercase;
@@ -568,7 +568,7 @@
         }
 
         .info-value {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 1rem;
             font-weight: 600;
         }
@@ -650,7 +650,7 @@
         .recaptcha-text {
             color: #555;
             font-size: 14px;
-            font-family: Roboto, Arial, sans-serif;
+            font-family: 'DM Sans', Arial, sans-serif;
         }
 
         .recaptcha-branding {
@@ -667,7 +667,7 @@
         .recaptcha-branding-text {
             font-size: 10px;
             color: #555;
-            font-family: Roboto, Arial, sans-serif;
+            font-family: 'DM Sans', Arial, sans-serif;
         }
 
         .loading-overlay {
@@ -701,7 +701,7 @@
         }
 
         .loading-message {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1rem;
             color: var(--text-primary);
             margin-bottom: 1.5rem;
@@ -720,13 +720,13 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), #6ee7b7);
+            background: linear-gradient(90deg, var(--primary), #67e8f9);
             width: 0%;
             transition: width 0.3s;
         }
 
         .progress-text {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.9rem;
             color: var(--text-muted);
         }
@@ -773,7 +773,7 @@
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
         .seo-content h2 {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
@@ -783,7 +783,7 @@
         }
         .seo-content h2:first-of-type { margin-top: 0; }
         .seo-content h3 {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-primary);
@@ -813,7 +813,7 @@
             margin-bottom: 1rem;
         }
         .seo-content .faq-item h4 {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-primary);
@@ -840,7 +840,7 @@
                 </svg>
                 BACK
             </a>
-            <img src="/logo.png" alt="RoCrack" class="logo-image" style="max-width:340px;height:auto;margin-bottom:1.5rem;filter:drop-shadow(0 0 20px rgba(34, 197, 94, 0.4));">
+            <img src="/logo.png" alt="RoCrack" class="logo-image" style="max-width:340px;height:auto;margin-bottom:1.5rem;filter:drop-shadow(0 0 20px rgba(167, 139, 250, 0.4));">
             <img src="blox.png" alt="Fish It" class="game-icon">
             <span class="header-badge">PREMIUM SCRIPT</span>
             <h1 class="header-title">Fish It Script</h1>

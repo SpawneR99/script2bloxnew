@@ -34,384 +34,358 @@
     <link rel="apple-touch-icon" href="/logo.png">
     
     <!-- Theme Color -->
-    <meta name="theme-color" content="#22c55e">
+    <meta name="theme-color" content="#6d28d9">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #22c55e;
-            --primary-glow: rgba(34, 197, 94, 0.4);
-            --primary-dark: #16a34a;
-            --primary-soft: rgba(34, 197, 94, 0.08);
-            --secondary: #10b981;
-            --secondary-glow: rgba(16, 185, 129, 0.25);
-            --bg-dark: #09090b;
-            --bg-darker: #050506;
-            --bg-card: rgba(16, 16, 20, 0.85);
-            --bg-card-hover: rgba(22, 22, 30, 0.95);
-            --text-primary: #f0f0f5;
-            --text-secondary: #9898ad;
-            --text-muted: #55556a;
-            --border-color: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --danger-bg: rgba(239, 68, 68, 0.08);
-            --danger-border: rgba(239, 68, 68, 0.3);
-            --radius: 16px;
+            --accent: #a78bfa;
+            --accent-bright: #c4b5fd;
+            --accent-deep: #7c3aed;
+            --accent-glow: rgba(167, 139, 250, 0.35);
+            --cyan: #22d3ee;
+            --cyan-dim: rgba(34, 211, 238, 0.12);
+            --surface-0: #06060f;
+            --surface-1: #0c0c1d;
+            --surface-2: rgba(18, 18, 42, 0.75);
+            --surface-3: rgba(26, 26, 58, 0.6);
+            --text-bright: #eef2ff;
+            --text-normal: #a5b4d4;
+            --text-dim: #5b6a8a;
+            --stroke: rgba(167, 139, 250, 0.1);
+            --stroke-hover: rgba(167, 139, 250, 0.25);
+            --r: 20px;
         }
 
-        .privacy-notice {
-            background: var(--danger-bg);
-            border: 2px solid var(--danger-border);
-            border-radius: var(--radius);
-            padding: 1.25rem 1.5rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .privacy-notice p {
-            color: #fca5a5;
-            font-size: 0.88rem;
-            line-height: 1.7;
-        }
-
-        .privacy-notice strong {
-            color: var(--danger);
-            font-weight: 700;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--bg-darker);
-            color: var(--text-primary);
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--surface-0);
+            color: var(--text-normal);
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.65;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Subtle Background */
-        .bg-grid {
+        /* Aurora mesh background */
+        .aurora {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 60px 60px;
+            inset: 0;
             z-index: 0;
-        }
-
-        .bg-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background: 
-                radial-gradient(ellipse 70% 50% at 50% -20%, rgba(34, 197, 94, 0.08), transparent 60%),
-                radial-gradient(ellipse 50% 50% at 80% 50%, rgba(34, 197, 94, 0.03), transparent 60%),
-                radial-gradient(ellipse 40% 50% at 20% 80%, rgba(16, 185, 129, 0.02), transparent 60%);
             pointer-events: none;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(124, 58, 237, 0.12), transparent 55%),
+                radial-gradient(ellipse 60% 70% at 85% 30%, rgba(34, 211, 238, 0.08), transparent 50%),
+                radial-gradient(ellipse 50% 50% at 50% 90%, rgba(167, 139, 250, 0.06), transparent 50%);
         }
 
-        /* Floating Particles */
-        .particles {
+        .noise-layer {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.025;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 180px;
+        }
+
+        .orbs-container {
+            position: fixed;
+            inset: 0;
             z-index: 0;
             overflow: hidden;
             pointer-events: none;
         }
 
-        .particle {
+        .orb {
             position: absolute;
-            width: 1.5px;
-            height: 1.5px;
-            background: var(--primary);
             border-radius: 50%;
-            box-shadow: 0 0 6px var(--primary-glow);
-            animation: float 20s infinite;
-            opacity: 0.4;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: drift 25s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.4; }
-            90% { opacity: 0.4; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        .orb:nth-child(1) { width: 320px; height: 320px; background: var(--accent-deep); top: -10%; left: 5%; animation-delay: 0s; }
+        .orb:nth-child(2) { width: 250px; height: 250px; background: var(--cyan); top: 60%; right: -5%; animation-delay: -8s; }
+        .orb:nth-child(3) { width: 200px; height: 200px; background: var(--accent); bottom: 10%; left: 30%; animation-delay: -15s; }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 15px) scale(0.95); }
         }
 
-        /* Remove scanlines for cleaner look */
-        .scanlines {
-            display: none;
-        }
-
-        /* Main Container */
-        .container {
+        /* Layout shell */
+        .shell {
             position: relative;
             z-index: 2;
-            max-width: 960px;
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 1.5rem 1.5rem;
+            padding: 0 1.5rem;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* Header / Navigation */
-        .header {
+        /* Top bar */
+        .topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--stroke);
         }
 
-        .logo-container {
+        .brand {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            position: relative;
+        .brand-logo {
+            height: 48px;
+            width: auto;
+            transition: transform 0.3s ease;
         }
 
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        }
+        .brand:hover .brand-logo { transform: rotate(-3deg) scale(1.04); }
 
-        .logo-icon::after {
-            content: '⚡';
-            position: absolute;
-            inset: 0;
+        .indicators {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .nav-stats {
-            display: flex;
-            gap: 0.75rem;
+            gap: 0.6rem;
             align-items: center;
         }
 
-        .stat-badge {
-            display: flex;
+        .pill {
+            display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.4rem 0.75rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+            padding: 0.35rem 0.8rem;
+            background: var(--surface-2);
+            border: 1px solid var(--stroke);
+            border-radius: 100px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            backdrop-filter: blur(8px);
         }
 
-        .stat-dot {
+        .dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            animation: blink 2s ease-in-out infinite;
+            animation: pulse-dot 2s ease-in-out infinite;
         }
 
-        .stat-dot.online { background: var(--success); box-shadow: 0 0 8px rgba(34, 197, 94, 0.5); }
-        .stat-dot.update { background: var(--warning); box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
+        .dot--live { background: var(--cyan); box-shadow: 0 0 8px rgba(34, 211, 238, 0.5); }
+        .dot--warn { background: #fb923c; box-shadow: 0 0 8px rgba(251, 146, 60, 0.5); }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
         }
 
-        /* Hero Section */
-        .hero {
+        /* Showcase / hero */
+        .showcase {
+            padding: 5rem 0 3.5rem;
             text-align: center;
-            padding: 4rem 0 3rem;
             position: relative;
         }
 
-        .hero::before {
+        .showcase::after {
             content: '';
             position: absolute;
-            top: 40%;
+            top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(34, 197, 94, 0.1), transparent 70%);
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.12), transparent 70%);
             pointer-events: none;
         }
 
-        .hero-badge {
+        .status-chip {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4rem 1.2rem;
-            background: var(--primary-soft);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            border-radius: 50px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            letter-spacing: 0.5px;
+            padding: 0.35rem 1rem;
+            background: var(--cyan-dim);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 100px;
+            margin-bottom: 1.8rem;
         }
 
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
+        .status-chip .blink {
+            width: 7px;
+            height: 7px;
+            background: var(--cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
+            animation: pulse-dot 1.4s ease-in-out infinite;
+        }
+
+        .status-chip span {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: var(--cyan);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.2px;
         }
 
-        .hero-title .highlight {
-            background: linear-gradient(135deg, var(--primary), #4ade80);
+        .status-chip strong { color: var(--text-bright); }
+
+        .tagline {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border: 1px solid var(--stroke);
+            border-radius: 100px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.65rem;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+        }
+
+        .tagline svg { vertical-align: -2px; margin-right: 4px; }
+
+        .headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            letter-spacing: -1px;
+            color: var(--text-bright);
+        }
+
+        .headline .gradient {
+            background: linear-gradient(135deg, var(--accent-bright), var(--cyan));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .hero-subtitle {
+        .blurb {
             font-size: 1.05rem;
-            color: var(--text-secondary);
-            max-width: 560px;
-            margin: 0 auto 0.6rem;
-            line-height: 1.7;
-            font-weight: 400;
+            color: var(--text-normal);
+            max-width: 540px;
+            margin: 0 auto 0.5rem;
+            line-height: 1.75;
         }
 
-        .hero-formerly {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
+        .micro-label {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 2.5rem;
         }
 
-        .trust-indicators {
+        .metrics {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 3rem;
             flex-wrap: wrap;
             padding: 1.5rem 0;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+            border-top: 1px solid var(--stroke);
+            border-bottom: 1px solid var(--stroke);
         }
 
-        .trust-item {
+        .metric {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.2rem;
+            gap: 0.15rem;
         }
 
-        .trust-value {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
+        .metric-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--text-bright);
         }
 
-        .trust-label {
-            font-size: 0.72rem;
-            color: var(--text-muted);
+        .metric-key {
+            font-size: 0.68rem;
+            color: var(--text-dim);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.8px;
             font-weight: 500;
         }
 
-        /* Features Grid */
-        .features-section {
+        .safety-strip {
+            margin: 2rem auto 0;
+            max-width: 640px;
+            background: rgba(239, 68, 68, 0.06);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: var(--r);
+            padding: 1.1rem 1.4rem;
+            text-align: center;
+        }
+
+        .safety-strip p {
+            color: #fca5a5;
+            font-size: 0.84rem;
+            line-height: 1.7;
+        }
+
+        .safety-strip strong { color: #f87171; font-weight: 700; }
+
+        /* Cards section */
+        .cards-area {
             padding: 3rem 0;
         }
 
-        .section-header {
+        .area-label {
             text-align: center;
             margin-bottom: 2rem;
         }
 
-        .section-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+        .area-label h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-muted);
+            letter-spacing: 4px;
+            color: var(--text-dim);
             margin-bottom: 0.5rem;
         }
 
-        .section-line {
-            width: 40px;
-            height: 2px;
-            background: var(--primary);
+        .area-label .bar {
+            width: 36px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-deep), var(--cyan));
             margin: 0 auto;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
-        .features-grid {
+        .card-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-            max-width: 700px;
+            gap: 1.5rem;
+            max-width: 740px;
             margin: 0 auto;
         }
 
-        /* Feature Cards */
-        .feature-card {
+        .action-card {
             position: relative;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 2rem 1.75rem;
+            background: var(--surface-2);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--stroke);
+            border-radius: var(--r);
+            padding: 2.2rem 1.8rem;
             overflow: hidden;
-            transition: all 0.35s ease;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             cursor: pointer;
             text-decoration: none;
             color: inherit;
@@ -420,466 +394,328 @@
             align-items: flex-start;
         }
 
-        .feature-card::before {
+        .action-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--card-color), transparent);
+            inset: 0;
+            border-radius: var(--r);
+            padding: 1px;
+            background: linear-gradient(160deg, var(--card-tint), transparent 50%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
             opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .action-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--stroke-hover);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px var(--card-glow);
+        }
+
+        .action-card:hover::before { opacity: 1; }
+
+        .action-card.variant-a {
+            --card-tint: var(--accent);
+            --card-glow: rgba(124, 58, 237, 0.1);
+        }
+
+        .action-card.variant-b {
+            --card-tint: var(--cyan);
+            --card-glow: rgba(34, 211, 238, 0.08);
+        }
+
+        .card-flag {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            padding: 0.2rem 0.55rem;
+            background: var(--surface-3);
+            color: var(--card-tint);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.58rem;
+            font-weight: 600;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border: 1px solid var(--stroke);
+        }
+
+        .card-thumb-wrap {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            margin-bottom: 1.4rem;
+        }
+
+        .card-thumb-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--card-tint), transparent);
+            border-radius: 16px;
+            opacity: 0.1;
             transition: opacity 0.3s;
         }
 
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, var(--card-glow) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            pointer-events: none;
-        }
+        .action-card:hover .card-thumb-bg { opacity: 0.2; }
 
-        .feature-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-hover);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border-hover);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card:hover::after {
-            opacity: 0.6;
-        }
-
-        .feature-card.executor {
-            --card-color: var(--primary);
-            --card-glow: rgba(34, 197, 94, 0.08);
-        }
-
-        .feature-card.scripts {
-            --card-color: var(--secondary);
-            --card-glow: rgba(16, 185, 129, 0.08);
-        }
-
-        .card-icon-wrapper {
-            position: relative;
-            width: 52px;
-            height: 52px;
-            margin-bottom: 1.25rem;
-        }
-
-        .card-icon-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--card-color), transparent);
-            border-radius: 14px;
-            opacity: 0.12;
-        }
-
-        .feature-card:hover .card-icon-bg {
-            opacity: 0.2;
-        }
-
-        .card-icon {
+        .card-thumb {
             position: relative;
             width: 100%;
             height: 100%;
             object-fit: contain;
-            transition: transform 0.3s;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .feature-card:hover .card-icon {
-            transform: scale(1.05);
-        }
+        .action-card:hover .card-thumb { transform: scale(1.08) rotate(2deg); }
 
-        .card-badge {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            padding: 0.2rem 0.6rem;
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--card-color);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            font-weight: 600;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .card-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.15rem;
+        .card-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.3px;
+            color: var(--text-bright);
+            margin-bottom: 0.45rem;
+            letter-spacing: -0.2px;
         }
 
-        .card-description {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 1.25rem;
+        .card-desc {
+            color: var(--text-normal);
+            font-size: 0.84rem;
+            line-height: 1.65;
+            margin-bottom: 1.2rem;
         }
 
-        .card-features {
+        .card-chips {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.35rem;
+            gap: 0.3rem;
             margin-bottom: 1.5rem;
         }
 
-        .card-feature {
-            padding: 0.2rem 0.6rem;
+        .chip {
+            padding: 0.18rem 0.55rem;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--stroke);
             border-radius: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.6rem;
+            color: var(--text-dim);
             letter-spacing: 0.3px;
         }
 
-        .card-cta {
+        .card-action {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.6rem 1.4rem;
-            background: var(--card-color);
-            color: #000;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
+            padding: 0.55rem 1.3rem;
+            background: linear-gradient(135deg, var(--card-tint), color-mix(in srgb, var(--card-tint), white 20%));
+            color: #0a0e27;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.76rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.25s;
+            letter-spacing: 0.6px;
+            border-radius: 10px;
             text-decoration: none;
             margin-top: auto;
+            transition: all 0.25s;
         }
 
-        .card-cta:hover {
-            box-shadow: 0 6px 20px var(--card-glow);
+        .card-action:hover {
+            box-shadow: 0 8px 24px var(--card-glow);
             transform: translateY(-1px);
         }
 
-        .card-cta svg {
+        .card-action svg {
             width: 14px;
             height: 14px;
             transition: transform 0.25s;
         }
 
-        .card-cta:hover svg {
-            transform: translateX(3px);
-        }
+        .card-action:hover svg { transform: translateX(3px); }
 
-        /* Footer */
-        .footer {
-            margin-top: auto;
-            padding: 2.5rem 0 1.5rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .footer-brand {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 3px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: color 0.25s;
-        }
-
-        .footer-link:hover {
-            color: var(--text-secondary);
-        }
-
-        .footer-disclaimer {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            max-width: 400px;
-            line-height: 1.5;
-        }
-
-        .footer-copyright {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .header {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-
-            .nav-stats {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero {
-                padding: 2.5rem 0 2rem;
-            }
-
-            .trust-indicators {
-                gap: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                max-width: 380px;
-            }
-
-            .feature-card {
-                padding: 1.5rem 1.25rem;
-            }
-
-            .hero::before {
-                width: 300px;
-                height: 300px;
-            }
-
-            .live-banner {
-                padding: 0.4rem 0.8rem;
-            }
-
-            .live-text {
-                font-size: 0.65rem;
-                letter-spacing: 1px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.6rem;
-                letter-spacing: 1px;
-            }
-
-            .trust-indicators {
-                gap: 1rem;
-            }
-
-            .trust-value {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Glow text utility */
-        .glow-text {
-            text-shadow: 0 0 20px currentColor;
-        }
-
-        /* Animation delays for stagger effect */
-        .feature-card:nth-child(1) { animation: fadeInUp 0.5s ease-out 0.15s both; }
-        .feature-card:nth-child(2) { animation: fadeInUp 0.5s ease-out 0.25s both; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero { animation: fadeInUp 0.6s ease-out; }
-
-        /* Live Banner */
-        .live-banner {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.45rem 1.2rem;
-            background: rgba(34, 197, 94, 0.06);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            border-radius: 50px;
-            margin-bottom: 1.5rem;
-        }
-
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            background: var(--success);
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
-            animation: live-blink 1.5s ease-in-out infinite;
-        }
-
-        @keyframes live-blink {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.85); }
-        }
-
-        .live-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--success);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .live-text span {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* Logo Image */
-        .logo-image {
-            height: 60px;
-            width: auto;
-            transition: all 0.25s;
-        }
-
-        .logo-container:hover .logo-image {
-            transform: scale(1.03);
-        }
-
-        /* SEO Content Section */
-        .seo-content {
+        /* Article / SEO */
+        .article-block {
             margin-top: 3rem;
             padding: 2.5rem 2rem;
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
+            background: var(--surface-2);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--stroke);
+            border-radius: var(--r);
             position: relative;
             overflow: hidden;
         }
 
-        .seo-content::before {
+        .article-block::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
-        .seo-content h2 {
-            font-family: 'Inter', sans-serif;
+        .article-block h2 {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: 0.3px;
+            color: var(--text-bright);
+            letter-spacing: -0.3px;
             margin: 2.5rem 0 0.8rem;
         }
 
-        .seo-content h2:first-of-type {
-            margin-top: 0;
-        }
+        .article-block h2:first-of-type { margin-top: 0; }
 
-        .seo-content h3 {
-            font-family: 'Inter', sans-serif;
+        .article-block h3 {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1rem;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: var(--text-normal);
             margin: 1.5rem 0 0.5rem;
         }
 
-        .seo-content p {
-            color: var(--text-muted);
+        .article-block p {
+            color: var(--text-dim);
             font-size: 0.88rem;
-            line-height: 1.75;
+            line-height: 1.8;
             margin-bottom: 0.8rem;
         }
 
-        .seo-content ul, .seo-content ol {
-            color: var(--text-muted);
+        .article-block ul, .article-block ol {
+            color: var(--text-dim);
             font-size: 0.88rem;
-            line-height: 1.75;
+            line-height: 1.8;
             margin-bottom: 0.8rem;
             padding-left: 1.5rem;
         }
 
-        .seo-content li {
-            margin-bottom: 0.35rem;
-        }
+        .article-block li { margin-bottom: 0.35rem; }
 
-        .seo-content strong {
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
+        .article-block strong { color: var(--text-normal); font-weight: 600; }
 
-        .seo-content a {
-            color: var(--primary);
-            text-decoration: none;
-        }
+        .article-block a { color: var(--accent); text-decoration: none; }
+        .article-block a:hover { text-decoration: underline; }
 
-        .seo-content a:hover {
-            text-decoration: underline;
-        }
-
-        .seo-content .faq-item {
+        .article-block .qa-box {
             background: rgba(255, 255, 255, 0.015);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.25rem;
-            margin-bottom: 0.75rem;
+            border: 1px solid var(--stroke);
+            border-radius: 14px;
+            padding: 1.2rem;
+            margin-bottom: 0.7rem;
         }
 
-        .seo-content .faq-item h4 {
-            font-family: 'Inter', sans-serif;
+        .article-block .qa-box h4 {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 0.92rem;
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--text-bright);
             margin-bottom: 0.4rem;
         }
 
-        .seo-content .faq-item p {
-            margin-bottom: 0;
+        .article-block .qa-box p { margin-bottom: 0; }
+
+        /* Bottom bar */
+        .bottom-bar {
+            margin-top: auto;
+            padding: 2.5rem 0 1.5rem;
+            border-top: 1px solid var(--stroke);
+            text-align: center;
+        }
+
+        .bottom-bar-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .bottom-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .bottom-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .bottom-nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.78rem;
+            transition: color 0.25s;
+        }
+
+        .bottom-nav a:hover { color: var(--accent); }
+
+        .bottom-note {
+            font-size: 0.74rem;
+            color: var(--text-dim);
+            max-width: 420px;
+            line-height: 1.6;
+        }
+
+        .bottom-copy {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .shell { padding: 0 1rem; }
+
+            .topbar {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .indicators {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .showcase { padding: 3rem 0 2rem; }
+
+            .metrics { gap: 1.5rem; }
+
+            .card-row {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .action-card { padding: 1.5rem 1.25rem; }
+
+            .showcase::after { width: 260px; height: 260px; }
+        }
+
+        @media (max-width: 480px) {
+            .headline { font-size: 1.75rem; letter-spacing: -0.5px; }
+            .metrics { gap: 1rem; }
+            .metric-val { font-size: 1.15rem; }
+        }
+
+        /* Entrance animations */
+        .showcase { animation: rise 0.7s ease-out; }
+        .action-card:nth-child(1) { animation: rise 0.5s ease-out 0.2s both; }
+        .action-card:nth-child(2) { animation: rise 0.5s ease-out 0.35s both; }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
-            .seo-content {
-                padding: 1.5rem 1rem;
-            }
-
-            .seo-content h2 {
-                font-size: 1.05rem;
-            }
-
-            .seo-content h3 {
-                font-size: 0.92rem;
-            }
+            .article-block { padding: 1.5rem 1rem; }
+            .article-block h2 { font-size: 1.05rem; }
+            .article-block h3 { font-size: 0.92rem; }
         }
     </style>
     <script type="application/ld+json">
@@ -947,129 +783,132 @@
       <script defer src="https://analytics.ufomedia.xyz/script.js" data-website-id="4d044431-8765-4cc3-bb1e-14c8f64f2790"></script>
 </head>
   <body>
-    <!-- Background Effects -->
-    <div class="bg-grid"></div>
-    <div class="bg-glow"></div>
-    <div class="particles" id="particles"></div>
-    <div class="scanlines"></div>
+    <!-- Background layers -->
+    <div class="aurora"></div>
+    <div class="noise-layer"></div>
+    <div class="orbs-container" id="orbLayer">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
 
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo-container">
-                <img src="logo.png" alt="RoCrack Logo" class="logo-image">
+    <div class="shell">
+        <!-- Top bar -->
+        <header class="topbar">
+            <div class="brand">
+                <img src="logo.png" alt="RoCrack Logo" class="brand-logo">
             </div>
-            <div class="nav-stats">
-                <div class="stat-badge">
-                    <span class="stat-dot online"></span>
+            <div class="indicators">
+                <div class="pill">
+                    <span class="dot dot--live"></span>
                     <span id="onlineCount">847</span> ONLINE
-        </div>
-                <div class="stat-badge">
-                    <span class="stat-dot update"></span>
+                </div>
+                <div class="pill">
+                    <span class="dot dot--warn"></span>
                     UPDATED <span id="updateDate">DEC 2026</span>
                 </div>
             </div>
         </header>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="live-banner">
-                <span class="live-dot"></span>
-                <span class="live-text"><span>RoCrack v3</span> — now live</span>
+        <!-- Showcase -->
+        <section class="showcase">
+            <div class="status-chip">
+                <span class="blink"></span>
+                <span><strong>RoCrack v3</strong> — now live</span>
             </div>
-            <div class="hero-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="tagline">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                     <path d="M2 17l10 5 10-5"/>
                     <path d="M2 12l10 5 10-5"/>
                 </svg>
                 #1 Script Aggregator
             </div>
-            <h1 class="hero-title">
-                <span class="highlight">RoCrack</span><br>
+            <h1 class="headline">
+                <span class="gradient">RoCrack</span><br>
                 Roblox Tools & Scripts
             </h1>
-            <p class="hero-subtitle">
+            <p class="blurb">
                 The best Delta Executor installation and key generation tool. 
                 Your all-in-one solution for executors, scripts & keys — completely free.
             </p>
-            <p class="hero-formerly">Trusted by Millions</p>
-            <div class="trust-indicators">
-                <div class="trust-item">
-                    <span class="trust-value" id="totalDownloads">12.4M+</span>
-                    <span class="trust-label">Downloads</span>
+            <p class="micro-label">Trusted by Millions</p>
+            <div class="metrics">
+                <div class="metric">
+                    <span class="metric-val" id="totalDownloads">12.4M+</span>
+                    <span class="metric-key">Downloads</span>
                 </div>
-                <div class="trust-item">
-                    <span class="trust-value">99.9%</span>
-                    <span class="trust-label">Uptime</span>
+                <div class="metric">
+                    <span class="metric-val">99.9%</span>
+                    <span class="metric-key">Uptime</span>
                 </div>
-                <div class="trust-item">
-                    <span class="trust-value">24/7</span>
-                    <span class="trust-label">Support</span>
+                <div class="metric">
+                    <span class="metric-val">24/7</span>
+                    <span class="metric-key">Support</span>
                 </div>
-                <div class="trust-item">
-                    <span class="trust-value">100%</span>
-                    <span class="trust-label">Safe</span>
+                <div class="metric">
+                    <span class="metric-val">100%</span>
+                    <span class="metric-key">Safe</span>
                 </div>
             </div>
 
-            <div class="privacy-notice">
+            <div class="safety-strip">
                 <p>&#9888; <strong>WE NEVER ASK FOR YOUR PERSONAL DATA.</strong> RoCrack will never request your Roblox password, email, or any personal information. The <strong>ONLY</strong> thing we ask for is your <strong>Roblox username</strong> — which is publicly visible to everyone. <strong>Never share your password with anyone.</strong></p>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="features-section">
-            <div class="section-header">
-                <h2 class="section-title">Choose Your Tool</h2>
-                <div class="section-line"></div>
-        </div>
+        <!-- Cards -->
+        <section class="cards-area">
+            <div class="area-label">
+                <h2>Choose Your Tool</h2>
+                <div class="bar"></div>
+            </div>
 
-            <div class="features-grid">
-                <!-- Executor Card -->
-                <a href="script/index.html" class="feature-card executor">
-                    <span class="card-badge">Popular</span>
-                    <div class="card-icon-wrapper">
-                        <div class="card-icon-bg"></div>
-                        <img src="delta.png" alt="Delta Executor" class="card-icon">
+            <div class="card-row">
+                <!-- Executor -->
+                <a href="script/index.html" class="action-card variant-a">
+                    <span class="card-flag">Popular</span>
+                    <div class="card-thumb-wrap">
+                        <div class="card-thumb-bg"></div>
+                        <img src="delta.png" alt="Delta Executor" class="card-thumb">
                     </div>
-                    <h3 class="card-title">Delta Executor</h3>
-                    <p class="card-description">
+                    <h3 class="card-name">Delta Executor</h3>
+                    <p class="card-desc">
                         Run scripts with the most powerful Roblox executor. Instant key generation, auto-updates, mobile & PC.
                     </p>
-                    <div class="card-features">
-                        <span class="card-feature">Auto-Update</span>
-                        <span class="card-feature">Anti-Ban</span>
-                        <span class="card-feature">Mobile</span>
+                    <div class="card-chips">
+                        <span class="chip">Auto-Update</span>
+                        <span class="chip">Anti-Ban</span>
+                        <span class="chip">Mobile</span>
                     </div>
-                    <span class="card-cta">
+                    <span class="card-action">
                         Get Executor
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </span>
                 </a>
 
-                <!-- Scripts Card -->
-                <a href="scripts/index.html" class="feature-card scripts">
-                    <span class="card-badge">50+ Games</span>
-                    <div class="card-icon-wrapper">
-                        <div class="card-icon-bg"></div>
-                        <img src="script.png" alt="Scripts" class="card-icon">
+                <!-- Scripts -->
+                <a href="scripts/index.html" class="action-card variant-b">
+                    <span class="card-flag">50+ Games</span>
+                    <div class="card-thumb-wrap">
+                        <div class="card-thumb-bg"></div>
+                        <img src="script.png" alt="Scripts" class="card-thumb">
                     </div>
-                    <h3 class="card-title">Script Library</h3>
-                    <p class="card-description">
+                    <h3 class="card-name">Script Library</h3>
+                    <p class="card-desc">
                         Premium scripts for all popular Roblox games. Verified, safe, and updated daily.
                     </p>
-                    <div class="card-features">
-                        <span class="card-feature">Blox Fruits</span>
-                        <span class="card-feature">Rivals</span>
-                        <span class="card-feature">Fisch</span>
-                        <span class="card-feature">+50 more</span>
+                    <div class="card-chips">
+                        <span class="chip">Blox Fruits</span>
+                        <span class="chip">Rivals</span>
+                        <span class="chip">Fisch</span>
+                        <span class="chip">+50 more</span>
                     </div>
-                    <span class="card-cta">
+                    <span class="card-action">
                         Browse Scripts
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </span>
@@ -1077,8 +916,8 @@
             </div>
         </section>
 
-        <!-- SEO Content Section -->
-        <section class="seo-content">
+        <!-- SEO Content -->
+        <section class="article-block">
             <h2>RoCrack — The #1 Source for Free Roblox Scripts &amp; Delta Executor in 2026</h2>
             <p><strong>RoCrack</strong> is the world's leading platform for <strong>free Roblox scripts</strong> and the official source for <strong>Delta Executor download</strong>. Since our founding, we have served over 15 million Roblox players worldwide, providing them with the tools, scripts, and resources they need to enhance their gaming experience across thousands of Roblox games. In 2026, RoCrack continues to set the industry standard for quality, safety, reliability, and innovation in the Roblox scripting ecosystem.</p>
             <p>Our platform brings together two essential services under one roof: a comprehensive <strong>script library</strong> with verified scripts for 50+ popular Roblox games, and the most powerful <strong>Roblox executor</strong> available on both mobile and PC. This unique combination makes RoCrack a one-stop destination for everything a Roblox player needs to take their gaming to the next level.</p>
@@ -1151,37 +990,36 @@
             </ol>
 
             <h2>Frequently Asked Questions — RoCrack</h2>
-            <div class="faq-item">
+            <div class="qa-box">
                 <h4>What is RoCrack?</h4>
                 <p>RoCrack is the world's leading platform for free Roblox scripts and the official source for Delta Executor downloads. Over 15 million players trust RoCrack for their Roblox enhancement needs.</p>
-                    </div>
-            <div class="faq-item">
+            </div>
+            <div class="qa-box">
                 <h4>Is RoCrack safe?</h4>
                 <p>Yes. All scripts are malware-scanned and verified, Delta Executor builds are security-tested, and we never ask for passwords or sensitive information. Safety is our top priority.</p>
             </div>
-            <div class="faq-item">
+            <div class="qa-box">
                 <h4>Is everything on RoCrack free?</h4>
                 <p>Yes, 100%. Every script, every Delta Executor download, and every feature is completely free with no premium tiers or hidden charges.</p>
             </div>
-            <div class="faq-item">
+            <div class="qa-box">
                 <h4>Does RoCrack work on mobile?</h4>
                 <p>Absolutely. Delta Executor is the only Roblox executor with full mobile support on Android and iOS. All RoCrack scripts are tested and verified for mobile compatibility.</p>
             </div>
-            <div class="faq-item">
+            <div class="qa-box">
                 <h4>What games have scripts available?</h4>
                 <p>RoCrack covers 50+ popular Roblox games including Blox Fruits, Brookhaven, Rivals, Fisch, Grow a Garden, Dead Rails, and many more. Our library grows continuously.</p>
             </div>
-            <div class="faq-item">
+            <div class="qa-box">
                 <h4>How do I download Delta Executor?</h4>
                 <p>Visit the Delta Executor page on RoCrack, enter your Roblox Username, complete the verification, and download Delta for your platform. The process takes less than 5 minutes.</p>
             </div>
-            <div class="faq-item">
+            <div class="qa-box">
                 <h4>How often is RoCrack updated?</h4>
                 <p>Our team works 24/7 to keep scripts, Delta Executor, and all content current. Updates are typically pushed within hours of Roblox and game patches.</p>
             </div>
 
             <p><strong>RoCrack</strong> is your ultimate destination for everything Roblox scripting. From the most powerful executor on the market to the largest script library available, and comprehensive game guides — RoCrack has everything you need to transform your Roblox experience. Join 15 million players who have already discovered the RoCrack difference. Start exploring today and unlock the full potential of Roblox gaming.</p>
-
 
             <h2>The RoCrack Ecosystem — Understanding Our Complete Platform</h2>
             <p>RoCrack is not simply a collection of downloadable scripts — it is a complete, integrated ecosystem designed to provide the ultimate Roblox enhancement experience. Our platform has been meticulously built over years of development, incorporating feedback from millions of users to create the most user-friendly, reliable, and comprehensive scripting resource available anywhere. Understanding the full scope of what RoCrack offers helps you take maximum advantage of every feature and tool at your disposal.</p>
@@ -1253,7 +1091,6 @@
             </ul>
             <p>The Roblox scripting landscape evolves rapidly, and RoCrack evolves with it. Our commitment to quality, safety, and accessibility drives every decision we make, ensuring that RoCrack remains the undisputed #1 destination for Roblox scripts and Delta Executor for years to come.</p>
 
-
             <h2>RoCrack Commitment to User Privacy &amp; Data Protection</h2>
             <p>In an era where data privacy is paramount, RoCrack maintains a strict privacy-first approach to user data. Our platform operates on the principle of data minimization — we collect only the absolute minimum information needed to provide our services, and we never sell, share, or misuse user data for any purpose beyond service delivery.</p>
             <p>When you use RoCrack, here is what we do and do not collect:</p>
@@ -1294,38 +1131,22 @@
         </section>
 
         <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <span class="footer-brand">RoCrack</span>
-                <div class="footer-links">
-                    <a href="terms.html" class="footer-link">Terms of Service</a>
-                    <a href="privacy.html" class="footer-link">Privacy Policy</a>
+        <footer class="bottom-bar">
+            <div class="bottom-bar-inner">
+                <span class="bottom-brand">RoCrack</span>
+                <div class="bottom-nav">
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
                 </div>
-                <p class="footer-disclaimer">
+                <p class="bottom-note">
                     Not affiliated with Roblox Corporation. We never ask for your password or personal data — only your username. Use at your own risk.
                 </p>
-                <span class="footer-copyright">© 2026 RoCrack. ALL RIGHTS RESERVED.</span>
+                <span class="bottom-copy">&copy; 2026 RoCrack. ALL RIGHTS RESERVED.</span>
             </div>
         </footer>
     </div>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const particleCount = 15;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                container.appendChild(particle);
-            }
-        }
-
-        // Update online count
         function updateOnlineCount() {
             const el = document.getElementById('onlineCount');
             const base = 800;
@@ -1333,7 +1154,6 @@
             el.textContent = base + variance;
         }
 
-        // Update date
         function updateDate() {
             const el = document.getElementById('updateDate');
             const date = new Date();
@@ -1341,32 +1161,26 @@
             el.textContent = months[date.getMonth()] + ' ' + date.getFullYear();
         }
 
-        // Initialize
-        createParticles();
         updateOnlineCount();
         updateDate();
         setInterval(updateOnlineCount, 5000);
 
-        // Add hover sound effect simulation (visual feedback)
-        document.querySelectorAll('.feature-card').forEach(card => {
+        document.querySelectorAll('.action-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                card.style.transition = 'all 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
             });
         });
     </script>
   
     <script>
-        // Umami custom path & step tracking
         const VIRTUAL_PATH = '/';
         
-        // Track initial page view
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof umami !== 'undefined') {
                 umami.track(props => ({ ...props, url: VIRTUAL_PATH }));
             }
         });
         
-        // Function to track step changes (call this when user progresses)
         function trackStep(stepName) {
             if (typeof umami !== 'undefined') {
                 const stepPath = VIRTUAL_PATH + '/' + stepName;
@@ -1375,12 +1189,10 @@
             }
         }
         
-        // Auto-track step transitions by observing container changes
         const stepObserver = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
                     const target = mutation.target;
-                    // Check if a step container became visible
                     if (target.id && target.id.includes('step') && !target.classList.contains('hidden')) {
                         trackStep(target.id);
                     }
@@ -1388,7 +1200,6 @@
             });
         });
         
-        // Start observing step containers
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('[id*="step"], [id*="Step"]').forEach(function(el) {
                 stepObserver.observe(el, { attributes: true, attributeFilter: ['class'] });

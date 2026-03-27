@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-/* Base styles */
 * {
     margin: 0;
     padding: 0;
@@ -8,10 +7,10 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #232527, #000000);
-    color: white;
+    background: #06060f;
+    color: #eef2ff;
 }
 
 .container {
@@ -23,7 +22,6 @@ body {
     align-items: center;
 }
 
-/* Logo Section */
 .logo-section {
     margin-bottom: 4rem;
     text-align: center;
@@ -35,9 +33,10 @@ body {
 }
 
 .gradient-text {
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 4rem;
     font-weight: bold;
-    background: linear-gradient(to right, #22c55e, #10b981);
+    background: linear-gradient(135deg, #c4b5fd, #22d3ee);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -45,7 +44,7 @@ body {
 
 .tagline {
     font-size: 1.25rem;
-    color: #cbd5e1;
+    color: #a5b4d4;
     margin-top: 1rem;
 }
 
@@ -56,7 +55,6 @@ body {
     }
 }
 
-/* Features Grid */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -71,29 +69,30 @@ body {
     }
 }
 
-/* Cards */
 .card {
-    backdrop-filter: blur(8px);
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 1.5rem;
+    backdrop-filter: blur(16px);
+    background-color: rgba(18, 18, 42, 0.75);
+    border: 1px solid rgba(167, 139, 250, 0.1);
+    border-radius: 1.25rem;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-4px);
+    background-color: rgba(26, 26, 58, 0.85);
+    transform: translateY(-6px);
+    border-color: rgba(167, 139, 250, 0.25);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .icon-wrapper {
-    border-radius: 50%;
+    border-radius: 16px;
     padding: 1rem;
     margin-bottom: 1rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     width: 80px;
     height: 80px;
     display: flex;
@@ -102,7 +101,7 @@ body {
 }
 
 .card:hover .icon-wrapper {
-    transform: scale(1.1);
+    transform: scale(1.08) rotate(2deg);
 }
 
 .icon {
@@ -111,60 +110,62 @@ body {
     object-fit: contain;
 }
 
-.red { background-color: #22c55e; }
-.blue { background-color: #10b981; }
-.green { background-color: #00B761; }
+.red { background: rgba(124, 58, 237, 0.15); }
+.blue { background: rgba(34, 211, 238, 0.12); }
+.green { background: rgba(167, 139, 250, 0.12); }
 
 .card h2 {
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    color: #eef2ff;
 }
 
 .card p {
-    color: #cbd5e1;
+    color: #a5b4d4;
     text-align: center;
     margin-bottom: 1.5rem;
 }
 
-/* Buttons */
 .btn {
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
-    padding: 0.5rem 1.5rem;
-    border-radius: 9999px;
+    padding: 0.55rem 1.5rem;
+    border-radius: 10px;
     border: none;
-    color: white;
+    color: #0a0e27;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    letter-spacing: 0.3px;
 }
 
 .btn:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
 }
 
 .btn:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
 }
 
 .btn-red {
-    background: linear-gradient(to right, #22c55e, #4ade80);
+    background: linear-gradient(135deg, #a78bfa, #c4b5fd);
 }
 
 .btn-blue {
-    background: linear-gradient(to right, #10b981, #6ee7b7);
+    background: linear-gradient(135deg, #22d3ee, #67e8f9);
 }
 
 .btn-green {
-    background: linear-gradient(to right, #00B761, #33C783);
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
 }
 
-/* Footer */
 footer {
     margin-top: 4rem;
     text-align: center;
-    color: #94a3b8;
+    color: #5b6a8a;
 }
 
 .disclaimer {

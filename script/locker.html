@@ -6,24 +6,24 @@
     <title>Unlock Key - RoCrack</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #22c55e;
-            --primary-glow: rgba(34, 197, 94, 0.5);
-            --primary-dark: #16a34a;
-            --secondary: #10b981;
-            --secondary-glow: rgba(16, 185, 129, 0.3);
-            --accent: #00ff6a;
-            --accent-glow: rgba(0, 255, 106, 0.3);
-            --bg-dark: #0a0a0f;
-            --bg-darker: #050508;
-            --bg-card: rgba(15, 15, 25, 0.9);
+            --primary: #a78bfa;
+            --primary-glow: rgba(167, 139, 250, 0.5);
+            --primary-dark: #7c3aed;
+            --secondary: #22d3ee;
+            --secondary-glow: rgba(34, 211, 238, 0.3);
+            --accent: #22d3ee;
+            --accent-glow: rgba(34, 211, 238, 0.3);
+            --bg-dark: #0c0c1d;
+            --bg-darker: #06060f;
+            --bg-card: rgba(18, 18, 42, 0.9);
             --text-primary: #ffffff;
             --text-secondary: #a0a0b5;
             --text-muted: #5a5a70;
-            --border-color: rgba(34, 197, 94, 0.2);
-            --warning: #ffaa00;
+            --border-color: rgba(167, 139, 250, 0.2);
+            --warning: #fb923c;
             --danger: #ff4757;
         }
 
@@ -38,7 +38,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-darker);
             color: var(--text-primary);
             min-height: 100vh;
@@ -53,8 +53,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(167, 139, 250, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(167, 139, 250, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: 0;
             animation: gridMove 20s linear infinite;
@@ -73,9 +73,9 @@
             height: 100%;
             z-index: 0;
             background: 
-                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34, 197, 94, 0.15), transparent 50%),
-                radial-gradient(ellipse 60% 40% at 100% 50%, rgba(0, 255, 106, 0.08), transparent 50%),
-                radial-gradient(ellipse 40% 60% at 0% 80%, rgba(16, 185, 129, 0.05), transparent 50%);
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(167, 139, 250, 0.15), transparent 50%),
+                radial-gradient(ellipse 60% 40% at 100% 50%, rgba(34, 211, 238, 0.08), transparent 50%),
+                radial-gradient(ellipse 40% 60% at 0% 80%, rgba(34, 211, 238, 0.05), transparent 50%);
             pointer-events: none;
         }
 
@@ -129,10 +129,10 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1.5rem;
-            background: rgba(0, 255, 106, 0.1);
+            background: rgba(34, 211, 238, 0.1);
             border: 1px solid var(--accent);
             border-radius: 50px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.8rem;
             color: var(--accent);
             margin-bottom: 1rem;
@@ -145,13 +145,13 @@
         }
 
         .header-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--accent), #66ffaa);
+            background: linear-gradient(90deg, var(--accent), #67e8f9);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -223,7 +223,7 @@
         }
 
         .stat-label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.7rem;
             color: var(--text-muted);
             text-transform: uppercase;
@@ -231,7 +231,7 @@
         }
 
         .stat-value {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
         }
@@ -275,7 +275,7 @@
             width: 60px;
             height: 60px;
             margin: 0 auto 1rem;
-            background: rgba(34, 197, 94, 0.1);
+            background: rgba(167, 139, 250, 0.1);
             border: 2px solid var(--border-color);
             border-radius: 50%;
             display: flex;
@@ -292,7 +292,7 @@
         }
 
         .locked-card.unlocked .lock-icon {
-            background: rgba(0, 255, 106, 0.1);
+            background: rgba(34, 211, 238, 0.1);
             border-color: var(--accent);
         }
 
@@ -301,7 +301,7 @@
         }
 
         .key-label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
@@ -320,7 +320,7 @@
         }
 
         .key-text {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-primary);
@@ -328,7 +328,7 @@
         }
 
         .key-blur {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-muted);
@@ -343,7 +343,7 @@
         }
 
         .lock-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
@@ -362,7 +362,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.8rem;
             color: var(--text-muted);
         }
@@ -421,7 +421,7 @@
         }
 
         .progress-text {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             color: var(--accent);
@@ -447,7 +447,7 @@
 
         .video-player:hover {
             border-color: var(--primary);
-            box-shadow: 0 0 20px var(--primary-glow), 0 0 40px rgba(34, 197, 94, 0.2);
+            box-shadow: 0 0 20px var(--primary-glow), 0 0 40px rgba(167, 139, 250, 0.2);
             transform: translateY(-2px);
         }
 
@@ -459,7 +459,7 @@
             align-items: center;
             justify-content: center;
             background: 
-                linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(167, 139, 250, 0.05) 0%, transparent 50%),
                 repeating-linear-gradient(
                     0deg,
                     transparent,
@@ -468,14 +468,14 @@
                     rgba(255, 255, 255, 0.02) 4px
                 ),
                 linear-gradient(90deg, 
-                    rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+                    rgba(167, 139, 250, 0.03) 1px, transparent 1px),
                 linear-gradient(
-                    rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+                    rgba(167, 139, 250, 0.03) 1px, transparent 1px);
             background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
         }
 
         .video-label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.65rem;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
@@ -483,7 +483,7 @@
         }
 
         .video-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 0.85rem;
             font-weight: 700;
             text-align: center;
@@ -538,7 +538,7 @@
 
         .video-bar {
             height: 28px;
-            background: #0a0a0f;
+            background: #0c0c1d;
             display: flex;
             align-items: center;
             padding: 0 10px;
@@ -549,7 +549,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.7rem;
             color: var(--text-secondary);
         }
@@ -588,7 +588,7 @@
         }
 
         .video-watch {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.7rem;
             color: var(--text-muted);
             transition: color 0.3s ease;
@@ -611,7 +611,7 @@
         }
 
         .offers-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -634,15 +634,15 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
 
         /* Warning Banner */
         .warning-banner {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.3);
             border-radius: 12px;
             padding: 1rem 1.5rem;
             margin-bottom: 1.5rem;
@@ -666,7 +666,7 @@
         }
 
         .steps-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -697,7 +697,7 @@
             height: 28px;
             background: var(--primary);
             color: white;
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 0.85rem;
             font-weight: 700;
             display: flex;
@@ -733,8 +733,8 @@
             align-items: center;
             gap: 0.8rem;
             padding: 0.8rem 1rem;
-            background: rgba(0, 255, 106, 0.08);
-            border: 1px solid rgba(0, 255, 106, 0.2);
+            background: rgba(34, 211, 238, 0.08);
+            border: 1px solid rgba(34, 211, 238, 0.2);
             border-radius: 8px;
         }
 
@@ -780,14 +780,14 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 106, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.05), transparent);
             transition: left 0.5s;
         }
 
         .offer-card:hover {
             border-color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 255, 106, 0.15);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.15);
         }
 
         .offer-card:hover::before {
@@ -811,7 +811,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
             color: white;
@@ -824,7 +824,7 @@
         }
 
         .offer-title {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.3rem;
@@ -843,8 +843,8 @@
         .offer-arrow {
             width: 40px;
             height: 40px;
-            background: rgba(0, 255, 106, 0.1);
-            border: 1px solid rgba(0, 255, 106, 0.2);
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -896,7 +896,7 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 1rem;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             transition: transform 0.4s;
@@ -977,7 +977,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
             color: white;

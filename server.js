@@ -130,7 +130,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, HOST, () => {
-    console.log(`🎮 RoCrack Server running at http://${HOST}:${PORT}`);
+    console.log(`🎮 Script2Blox Server running at http://${HOST}:${PORT}`);
     console.log(`📁 Serving files from: ${__dirname}`);
     console.log(`📡 AdBlueMedia API proxy ready at /api/offers`);
 });
